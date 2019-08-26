@@ -9,7 +9,7 @@ const app = express();
 app.use(morgan("common"));
 app.use(express.static('public'));
 app.use((err, req, res, next) => {
-  console.log(err);
+  console.log(err.stack);
   res.status(500).send("Something went wrong");
   next();
 });
