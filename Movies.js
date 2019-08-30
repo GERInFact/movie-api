@@ -3,92 +3,102 @@ const Movie = require("./Movie");
 module.exports = [
   new Movie(
     "Lord of the Rings",
-    "J.R.R. Tolkien",
+    "Peter Jackson",
     new Date(),
     Math.random() * 1000,
     Math.random() * 5,
     "An epic movie.",
+    "Fantasy",
     "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
   ),
   new Movie(
     "Lord of the Rings",
-    "J.R.R. Tolkien",
+    "Peter Jackson",
     new Date(),
     Math.random() * 1000,
     Math.random() * 5,
     "An epic movie.",
+    "Fantasy",
     "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
   ),
   new Movie(
     "Lord of the Rings",
-    "J.R.R. Tolkien",
+    "Peter Jackson",
     new Date(),
     Math.random() * 1000,
     Math.random() * 5,
     "An epic movie.",
+    "Fantasy",
     "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
   ),
   new Movie(
     "Lord of the Rings",
-    "J.R.R. Tolkien",
+    "Peter Jackson",
     new Date(),
     Math.random() * 1000,
     Math.random() * 5,
     "An epic movie.",
+    "Fantasy",
     "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
   ),
   new Movie(
     "Lord of the Rings",
-    "J.R.R. Tolkien",
+    "Peter Jackson",
     new Date(),
     Math.random() * 1000,
     Math.random() * 5,
     "An epic movie.",
+    "Fantasy",
     "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
   ),
   new Movie(
     "Lord of the Rings",
-    "J.R.R. Tolkien",
+    "Peter Jackson",
     new Date(),
     Math.random() * 1000,
     Math.random() * 5,
     "An epic movie.",
+    "Fantasy",
     "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
   ),
   new Movie(
     "Lord of the Rings",
-    "J.R.R. Tolkien",
+    "Peter Jackson",
     new Date(),
     Math.random() * 1000,
     Math.random() * 5,
     "An epic movie.",
+    "Fantasy",
     "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
   ),
   new Movie(
     "Lord of the Rings",
-    "J.R.R. Tolkien",
+    "Peter Jackson",
     new Date(),
     Math.random() * 1000,
     Math.random() * 5,
     "An epic movie.",
+    "Fantasy",
     "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
   ),
   new Movie(
     "Lord of the Rings",
-    "J.R.R. Tolkien",
+    "Peter Jackson",
     new Date(),
     Math.random() * 1000,
     Math.random() * 5,
     "An epic movie.",
+    "Fantasy",
     "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
   ),
   new Movie(
-    "Lord of the Rings",
-    "J.R.R. Tolkien",
+    "Snowden",
+    "Oliver Stone",
     new Date(),
     Math.random() * 1000,
     Math.random() * 5,
     "An epic movie.",
-    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
+    "Biographical Thriller",
+    "https://en.wikipedia.org/wiki/Snowden_(film)#/media/File:Snowden_film_poster.jpg"
   )
 ];
