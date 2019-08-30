@@ -33,168 +33,177 @@
         <!-- Intro sentence End -->
       </div>
       <!-- Intro Container End -->
-
     </header>
     <!-- Header End -->
 
-      <!-- Main Content -->
-      <main class="main-content">
-        <!-- Documentation -->
-        <ul class="main-content_documentation">
-          <li class="documentation_item">
-            <p class="item_description">
-              Endpoint URL: '/' <br />
-              Method: GET <br />
-              Parameters: none
-            </p>
-            <p class="item_description">Returns a welcome sentence.</p>
-            <p class="item_description">
-              Response: Text <br />
-              Request Body: none
-            </p>
-          </li>
-          <li class="documentation_item">
-            <p class="item_description">
-              Endpoint URL: '/movies' <br />
-              Method: GET <br />
-              Parameters: none
-            </p>
-            <p class="item_description">Returns a list of all movies .</p>
-            <p class="item_description">
-              Response: JSON (array) <br />
-              Request Body: none
-            </p>
-          </li>
-          <li class="documentation_item">
-            <p class="item_description">
-              Endpoint URL: '/movies/:title' <br />
-              Method: GET <br />
-              Parameters: :title (required)
-            </p>
-            <p class="item_description">
-              Returns movie information based on its title.
-            </p>
-            <p class="item_description">
-              Response: JSON <br />
-              Request Body: none
-            </p>
-          </li>
-          <li class="documentation_item">
-            <p class="item_description">
-              Endpoint URL: '/movies/:title/genre' <br />
-              Method: GET <br />
-              Parameters: :title (required)
-            </p>
-            <p class="item_description">
-              Returns the genre of a specific movie, selected by its title
-            </p>
-            <p class="item_description">
-              Response: JSON <br />
-              Request body: none
-            </p>
-          </li>
-          <li class="documentation_item">
-            <p class="item_description">
-              Endpoint URL: '/movies/:title/director' <br />
-              Method: GET <br />
-              Parameters: :title (required)
-            </p>
-            <p class="item_description">
-              Returns director information of the movie selected by its title
-            </p>
-            <p class="item_description">
-              Response: JSON <br />
-              Request body: none
-            </p>
-          </li>
-          <li class="documentation_item">
-            <p class="item_description">
-              Endpoint URL: '/users' <br />
-              Method: POST <br />
-              Parameters: none
-            </p>
-            <p class="item_description">
-              Adds a new user to the database and returns the submitted data, if
-              successful
-            </p>
-            <p class="item_description">
-              Response: Text <br />
-              Request body: JSON <br />
-              Format: {"username" : "value","password" : "value", "email":
-              "value", "dateOfBirth" : "value" }
-            </p>
-          </li>
-          <li class="documentation_item">
-            <p class="item_description">
-              Endpoint URL: '/users/:username' <br />
-              Method: PUT <br />
-              Parameters: :username (required)
-            </p>
-            <p class="item_description">
-              Updates the user data based on the information sent to the server
-            </p>
-            <p class="item_description">
-              Response: Text <br />
-              Request body: JSON <br />
-              Format: {"username" : "value","password" : "value", "email":
-              "value", "dateOfBirth" : "value" }
-            </p>
-          </li>
-          <li class="documentation_item">
-            <p class="item_description">
-              Endpoint URL: '/users/:username/:movies/:title' <br />
-              Method: DELETE <br />
-              Parameters: :username (required), :movies (required), :title
-              (required)
-            </p>
-            <p class="item_description">
-              Deletes a specific movie, selected by its title, from the users
-              movie list
-            </p>
-            <p class="item_description">
-              Response: Text <br />
-              Request body: none
-            </p>
-          </li>
-          <li class="documentation_item">
-            <p class="item_description">
-              Endpoint URL: '/users/:username' <br />
-              Method: DELETE <br />
-              Parameters: :username (required)
-            </p>
-            <p class="item_description">
-              Deletes a specific user from the database, based on the username
-              submitted
-            </p>
-            <p class="item_description">
-              Response: Text <br />
-              Request body: none
-            </p>
-          </li>
-          <li class="documentation_item">
-            Info
-            <p class="item_description">
-              Replace ':parameter' in your URL with some value
-            </p>
-            <p class="item_description">URL: http://localhost:8080/movies/Snowden <br> <br>
-            Response (JSON): {
-                "title": "Snowden",
-                "director": "Oliver Stone",
-                "releaseDate": "2019-08-30T10:30:55.034Z",
-                "views": 183.3791607679649,
-                "rating": 3.282957315261641,
-                "description": "An epic movie.",
-                "genre": "Biographical Thriller",
-                "imgUrl": "https://en.wikipedia.org/wiki/Snowden_(film)#/media/File:Snowden_film_poster.jpg"
-                }</p>
-            <p class="item_description">
-              All request are resolved at port: 8080
-            </p>
-          </li>
-        </ul>
-        <!-- Documentation End -->
-      </main>
-      <!-- Main Content End -->
-  
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Documentation -->
+      <ul class="main-content_documentation">
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/' <br />
+            Method: GET <br />
+            Parameters: none
+          </p>
+          <p class="item_description">Returns a welcome sentence.</p>
+          <p class="item_description">
+            Response: Text <br />
+            Request Body: none
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/movies' <br />
+            Method: GET <br />
+            Parameters: none
+          </p>
+          <p class="item_description">Returns a list of all movies.</p>
+          <p class="item_description">
+            Response: JSON (array) <br />
+            Request Body: none
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: 'movies/featured' <br />
+            Method: GET <br />
+            Parameters: none
+          </p>
+          <p class="item_description">Returns a list of all featured movies.</p>
+          <p class="item_description">
+            Response: JSON (array) <br />
+            Request body: none
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/movies/:title' <br />
+            Method: GET <br />
+            Parameters: :title (required)
+          </p>
+          <p class="item_description">
+            Returns movie information based on its title.
+          </p>
+          <p class="item_description">
+            Response: JSON <br />
+            Request Body: none
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/movies/:title/genre' <br />
+            Method: GET <br />
+            Parameters: :title (required)
+          </p>
+          <p class="item_description">
+            Returns the genre of a specific movie, selected by its title
+          </p>
+          <p class="item_description">
+            Response: JSON <br />
+            Request body: none
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/movies/:title/director' <br />
+            Method: GET <br />
+            Parameters: :title (required)
+          </p>
+          <p class="item_description">
+            Returns director information of the movie selected by its title
+          </p>
+          <p class="item_description">
+            Response: JSON <br />
+            Request body: none
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/users' <br />
+            Method: POST <br />
+            Parameters: none
+          </p>
+          <p class="item_description">
+            Adds a new user to the database and returns the submitted data, if
+            successful
+          </p>
+          <p class="item_description">
+            Response: Text <br />
+            Request body: JSON <br />
+            Format: {"username" : "value","password" : "value", "email":
+            "value", "dateOfBirth" : "value" }
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/users/:username' <br />
+            Method: PUT <br />
+            Parameters: :username (required)
+          </p>
+          <p class="item_description">
+            Updates the user data based on the information sent to the server
+          </p>
+          <p class="item_description">
+            Response: Text <br />
+            Request body: JSON <br />
+            Format: {"username" : "value","password" : "value", "email":
+            "value", "dateOfBirth" : "value" }
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/users/:username/:movies/:title' <br />
+            Method: DELETE <br />
+            Parameters: :username (required), :movies (required), :title
+            (required)
+          </p>
+          <p class="item_description">
+            Deletes a specific movie, selected by its title, from the users
+            movie list
+          </p>
+          <p class="item_description">
+            Response: Text <br />
+            Request body: none
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/users/:username' <br />
+            Method: DELETE <br />
+            Parameters: :username (required)
+          </p>
+          <p class="item_description">
+            Deletes a specific user from the database, based on the username
+            submitted
+          </p>
+          <p class="item_description">
+            Response: Text <br />
+            Request body: none
+          </p>
+        </li>
+        <li class="documentation_item">
+          Info
+          <p class="item_description">
+            Replace ':parameter' in your URL with some value
+          </p>
+          <p class="item_description">
+            URL: http://localhost:8080/movies/Snowden <br />
+            <br />
+            Response (JSON): { "title": "Snowden", "director": "Oliver Stone",
+            "releaseDate": "2019-08-30T10:30:55.034Z", "views":
+            183.3791607679649, "rating": 3.282957315261641, "description": "An
+            epic movie.", "genre": "Biographical Thriller", "imgUrl":
+            "https://en.wikipedia.org/wiki/Snowden_(film)#/media/File:Snowden_film_poster.jpg"
+            }
+          </p>
+          <p class="item_description">
+            All request are resolved at port: 8080
+          </p>
+        </li>
+      </ul>
+      <!-- Documentation End -->
+    </main>
+    <!-- Main Content End -->
   </body>
 </html>
