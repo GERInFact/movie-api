@@ -9,7 +9,8 @@ module.exports = [
     Math.random() * 5,
     "An epic movie.",
     "Fantasy",
-    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
+    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689",
+    true
   ),
   new Movie(
     "Lord of the Rings",
@@ -19,7 +20,8 @@ module.exports = [
     Math.random() * 5,
     "An epic movie.",
     "Fantasy",
-    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
+    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689",
+    true
   ),
   new Movie(
     "Lord of the Rings",
@@ -29,7 +31,8 @@ module.exports = [
     Math.random() * 5,
     "An epic movie.",
     "Fantasy",
-    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
+    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689",
+    true
   ),
   new Movie(
     "Lord of the Rings",
@@ -39,7 +42,8 @@ module.exports = [
     Math.random() * 5,
     "An epic movie.",
     "Fantasy",
-    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
+    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689",
+    true
   ),
   new Movie(
     "Lord of the Rings",
@@ -49,7 +53,8 @@ module.exports = [
     Math.random() * 5,
     "An epic movie.",
     "Fantasy",
-    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
+    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689",
+    true
   ),
   new Movie(
     "Lord of the Rings",
@@ -59,7 +64,8 @@ module.exports = [
     Math.random() * 5,
     "An epic movie.",
     "Fantasy",
-    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
+    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689",
+    true
   ),
   new Movie(
     "Lord of the Rings",
@@ -69,7 +75,8 @@ module.exports = [
     Math.random() * 5,
     "An epic movie.",
     "Fantasy",
-    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
+    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689",
+    true
   ),
   new Movie(
     "Lord of the Rings",
@@ -79,7 +86,8 @@ module.exports = [
     Math.random() * 5,
     "An epic movie.",
     "Fantasy",
-    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
+    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689",
+    true
   ),
   new Movie(
     "Lord of the Rings",
@@ -89,7 +97,8 @@ module.exports = [
     Math.random() * 5,
     "An epic movie.",
     "Fantasy",
-    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689"
+    "https://itunes.apple.com/us/movie-collection/the-lord-of-the-rings-trilogy/id365647689",
+    true
   ),
   new Movie(
     "Snowden",

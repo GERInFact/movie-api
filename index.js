@@ -21,9 +21,14 @@ app.get("/", (req, res) => {
   res.send("Welcome to myFlix! Your customized movie platform.");
 });
 
-// send top 10 movie list, if requested
+// send all movies
 app.get("/movies", (req, res) => {
   res.json(movies);
+});
+
+// send featured movies
+app.get("/movies/featured", (req, res) => {
+  res.json(movies.filter(m => m.isFeatured === true));
 });
 
 // send specific movie by name
