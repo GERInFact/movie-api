@@ -74,5 +74,10 @@ app.put("/users/:username", (req, res) => {
   else res.status(201).send(userData);
 });
 
+app.delete("/users/:username/:movies/:title", (req,res) => {
+  // Find user in db and delete if movie not found send res.status(404).send(`${req.params.title} not found in your list.`);
+  res.status(201).send(`${req.params.title}`);
+});
+
 // listen on port 8080
 app.listen(8080, () => console.log("Server is listening on port 8080"));
