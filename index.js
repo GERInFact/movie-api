@@ -29,15 +29,28 @@ app.get("/movies", (req, res) => {
 // send specific movie by name
 app.get("/movies/:title", (req, res) => {
   const movie = movies.find(m => m.title === req.params.title);
-  if(!movie) res.status(404).send(`No movie found with the title: ${req.params.title}`);
-  else res.json(movie); 
+  if (!movie)
+    res.status(404).send(`No movie found with the title: ${req.params.title}.`);
+  else res.json(movie);
 });
 
 // send movie list of a specific genre
 app.get("/movies/:genre", (req, res) => {
   const filteredMovies = movies.filter(m => m.genre === req.params.genre);
-  if(!filteredMovies) res.status(404).send(`No movies found for this genre: ${req.params.genre}`);
+  if (!filteredMovies)
+    res
+      .status(404)
+      .send(`No movies found for this genre: ${req.params.genre}.`);
   else res.json(filteredMovies);
+});
+
+// send director information
+app.get("/movies/:director", (req, res) => {
+  const director = movies.find(m => m.director === req.params.director)
+    .director;
+  if (!director)
+    res.status(404).send(`${req.params.director} Not known as director.`);
+  else res.json(director);
 });
 
 // listen on port 8080
