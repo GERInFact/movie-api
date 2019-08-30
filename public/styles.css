@@ -56,7 +56,6 @@ h2 {
     border-radius: 5px;
     color: var(--berry-red);
     background-color: var(--ice);
-    box-shadow: 0 0 5px 5px var(--ice-blue);
     transition: .3s;
 }
 .documentation_item:hover, .documentation_item:focus {
