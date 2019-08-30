@@ -26,7 +26,14 @@ app.get("/movies", (req, res) => {
   res.json(movies);
 });
 
-app.get("/movies/:title", (req, res) => {});
+// send specific movie by name
+app.get("/movies/:title", (req, res) => {
+  const movie = movies.find(m => m.title === req.params.title);
+  if(!movie) res.status(404).send(`No movie found with the title: ${req.params.title}`);
+  else res.json(movie); 
+});
+
+
 
 // listen on port 8080
 app.listen(8080, () => console.log("Server is listening on port 8080"));
