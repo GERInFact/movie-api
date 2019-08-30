@@ -62,10 +62,11 @@ app.get("/movies/:title/director", (req, res) => {
 
 // add a new user and send back added user data
 app.post("/users", (req,res) => {
-  const userData = JSON.parse(req.body);
+  // const userData = JSON.parse(req.body);
   // Add user entry to db
-  if(!userData) res.status(400).send("Data missing.");
-  else res.status(201).send(userData);
+  // if(!userData) res.status(400).send("Data missing.");
+  // else 
+  res.status(201).send(req.body);
 });
 
 // update user and send back updated user data
