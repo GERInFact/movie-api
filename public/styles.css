@@ -1,0 +1,71 @@
+/* CSS Variables */
+:root {
+    --ice-blue: #99d8d0;
+    --berry-red: #70416d;
+    --berry-black: #170a19;
+    --ice: #e4f2f0;
+}
+/* CSS Variables End */
+
+/* Root Elements */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+    background-color: var(--berry-black);
+}
+h1 {
+    font-family: 'Rubik', sans-serif; 
+    font-size: 40px;
+    color: var(--ice);
+}
+h2 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 30px;
+    color: var(--ice);
+}
+/* Root Elements End */
+
+/* Header */
+.title-container_title {
+    text-align: center;
+}
+
+.header_introduction-container {
+    text-align: center;
+}
+/* Header End */
+
+/* Main Content */
+/* Documentation  */
+.main-content_documentation {
+    margin-top: 50px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    list-style: none;
+}
+.documentation_item {
+    margin: 10px;
+    padding: 10px;
+    flex: 1 1 300px;
+    border: 1px solid var(--ice);
+    border-radius: 5px;
+    color: var(--berry-red);
+    background-color: var(--ice);
+    box-shadow: 0 0 5px 5px var(--ice-blue);
+    transition: .3s;
+}
+.documentation_item:hover, .documentation_item:focus {
+    transform: scale(1.05);
+}
+.item_description {
+    font-size: 18px;
+    font-weight: 600;
+}
+/* Documentation End */
+
+/* Main Content End */

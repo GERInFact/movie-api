@@ -1,35 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Rubik:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
     <title>myFlix</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header -->
     <header class="header">
-        <!-- Title Container -->
-        <div class="header_title-container">
-            <!-- Title -->
-            <h1 class="title-container_title">myFlix</h1>
-            <!-- Title End -->
+      <!-- Title Container -->
+      <div class="header_title-container">
+        <!-- Title -->
+        <h1 class="title-container_title">myFlix</h1>
+        <!-- Title End -->
+      </div>
+      <!-- Title Container End -->
 
-        </div>
-        <!-- Title Container End -->
+      <!-- Intro Container -->
+      <div class="header_introduction-container">
+        <!-- Intro sentence -->
+        <h2 class="introduction-container_intro-sentence">
+          This API provides an access to information about different movies,
+          directors and genres. As a user you can sign up, update your personal
+          information and create a list of your favorite movies.
+        </h2>
+        <!-- Intro sentence End -->
+      </div>
+      <!-- Intro Container End -->
 
-        <!-- Intro Container -->
-        <div class="header_introduction-container">
-            <!-- Intro sentence -->
-            <p class="introduction-container_intro-sentence">This API provides an access to information about different movies, directors and genres.</p>
-            <p class="introduction-container_intro-sentence">As a user you can sign up, update your personal information and create a list of your favorite movies.</p>
-            <!-- Intro sentence End -->
-
-        </div>
-        <!-- Intro Container End -->
-
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Documentation -->
+        <ul class="main-content_documentation">
+          <li class="documentation_item">
+            <p class="item_description">Endpoint URL: '/' <br> Method: GET</p>
+            <p class="item_description">Returns a welcome sentence.</p>
+            <p class="item_description">
+              Response: Text <br />
+              Request Body: none
+            </p>
+          </li>
+          <li class="documentation_item">
+            <p class="item_description">Endpoint URL: '/movies' <br> Method: GET</p>
+            <p class="item_description">Returns a list of all movies .</p>
+            <p class="item_description">
+              Response: JSON (array) <br />
+              Request Body: none
+            </p>
+          </li>
+          <li class="documentation_item">
+            <p class="item_description">
+              Endpoint URL: '/movies/:title' <br> Method: GET
+            </p>
+            <p class="item_description">
+              Returns movie information based on its title.
+            </p>
+            <p class="item_description">
+              Response: JSON <br />
+              Request Body: none
+            </p>
+          </li>
+          <li class="documentation_item">
+            <p class="item_description">
+              Endpoint URL: 'movies/:title/:genre' <br> Method: GET
+            </p>
+            <p class="item_description">
+              Returns the genre of a specific movie, selected by its title
+            </p>
+            <p class="item_description">
+              Response: JSON <br />
+              Request body: none
+            </p>
+          </li>
+          <li class="documentation_item">
+            <p class="item_description">Endpoint URL: '/movies/:title/:director' <br> Method: GET</p>
+            <p class="item_description">Returns director information of the movie selected by its title</p>
+            <p class="item_description">Response: JSON <br> Request body: none</p>
+          </li>
+          <li class="documentation_item">
+            <p class="item_description">Endpoint URL: '/users' <br> Method: POST</p>
+            <p class="item_description">Adds a new user to the database and returns the submitted data, if successful</p>
+            <p class="item_description">Response: Text <br> Request body: JSON {"username" : "","password" : "", "email": "", "dateOfBirth" : "" }</p>
+          </li>
+          <li class="documentation_item">
+            <p class="item_description">Endpoint URL: '/users/:username' <br> Method: PUT</p>
+            <p class="item_description">Updates the user data based on the information sent to the server</p>
+            <p class="item_description">Response: Text <br> Request body: JSON {"username" : "","password" : "", "email": "", "dateOfBirth" : "" }</p>
+          </li>
+          <li class="documentation_item">
+            <p class="item_description">Endpoint URL: '/users/:username/:movies/:title' <br> Method: DELETE</p>
+            <p class="item_description">Deletes a specific movie, selected by its title, from the users movie list</p>
+            <p class="item_description">Response: Text <br> Request body: none</p>
+          </li>
+          <li class="documentation_item">
+            <p class="item_description">Endpoint URL: '/users/:username' <br> Method: DELETE</p>
+            <p class="item_description">Deletes a specific user from the database, based on the username submitted</p>
+            <p class="item_description">Response: Text <br> Request body: none</p>
+          </li>
+          <li class="documentation_item">Info
+            <p class="item_description">Replace ':parameter' in your URL with some value</p>
+            <p class="item_description">':genre' of 'movies/:title/:genre' does NOT need to be replaced to wok properly</p>
+            <p class="item_description">All request are resolved at port: 8080</p>
+          </li>
+        </ul>
+        <!-- Documentation End -->
+      </main>
+      <!-- Main Content End -->
     </header>
     <!-- Header End -->
-    
-</body>
+  </body>
 </html>

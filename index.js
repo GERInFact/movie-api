@@ -79,7 +79,7 @@ app.put("/users/:username", (req, res) => {
 // remove movie from users movie list
 app.delete("/users/:username/:movies/:title", (req,res) => {
   // Find user in db and delete if movie not found send res.status(404).send(`${req.params.title} not found in your list.`);
-  res.status(201).send(`${req.params.title}`);
+  res.status(201).send(`${req.params.title} successfully deleted from your movie list.`);
 });
 
 // remove user from db
