@@ -1,3 +1,5 @@
+const Movie = require("./Movie");
+
 module.exports = [
   new Movie(
     "Lord of the Rings",
