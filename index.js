@@ -35,9 +35,10 @@ app.get("/movies/:title", (req, res) => {
 });
 
 // send genre of a specific movie
-app.get("movies/:title/:genre", (req,res) => {
+app.get("movies/:title/:genre", (req, res) => {
   const genreInfo = movies.find(m => m.title === req.params.title).genre;
-  if(!genreInfo) res.status(404).send(`No genre found for ${req.params.title}.`);
+  if (!genreInfo)
+    res.status(404).send(`No genre found for ${req.params.title}.`);
   else res.json(genreInfo);
 });
 
@@ -51,10 +52,9 @@ app.get("/movies/:genre", (req, res) => {
   else res.json(filteredMovies);
 });
 
-// send director information by name
-app.get("/movies/:director", (req, res) => {
-  const director = movies.find(m => m.director === req.params.director)
-    .director;
+// send director information of a certain movie
+app.get("/movies/:title/:director", (req, res) => {
+  const director = movies.find(m => m.title === req.params.title).director;
   if (!director)
     res.status(404).send(`${req.params.director} Not known as director.`);
   else res.json(director);
