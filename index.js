@@ -35,7 +35,7 @@ app.get("/movies/:title", (req, res) => {
 });
 
 // send genre of a specific movie
-app.get("movies/:title/:genre", (req, res) => {
+app.get("/movies/:title/genre", (req, res) => {
   const genreInfo = movies.find(m => m.title === req.params.title).genre;
   if (!genreInfo)
     res.status(404).send(`No genre found for ${req.params.title}.`);
@@ -43,7 +43,7 @@ app.get("movies/:title/:genre", (req, res) => {
 });
 
 // send movie list of a specific genre
-app.get("/movies/:genre", (req, res) => {
+app.get("/movies/:genre/filtered", (req, res) => {
   const filteredMovies = movies.filter(m => m.genre === req.params.genre);
   if (!filteredMovies)
     res
@@ -53,7 +53,7 @@ app.get("/movies/:genre", (req, res) => {
 });
 
 // send director information of a certain movie
-app.get("/movies/:title/:director", (req, res) => {
+app.get("/movies/:title/director", (req, res) => {
   const director = movies.find(m => m.title === req.params.title).director;
   if (!director)
     res.status(404).send(`${req.params.director} Not known as director.`);
@@ -70,10 +70,11 @@ app.post("/users", (req,res) => {
 
 // update user and send back updated user data
 app.put("/users/:username", (req, res) => {
-  const userData = JSON.parse(req.body);
+  // const userData = JSON.parse(req.body);
   // Find user in db and update properties
-  if(!userData) res.status(400).send("Data missing");
-  else res.status(201).send(userData);
+  // if(!userData) res.status(400).send("Data missing");
+  // else 
+  res.status(201).send(`${req.params.username} was successfully updated.`);
 });
 
 // remove movie from users movie list
