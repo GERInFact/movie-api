@@ -62,7 +62,15 @@ app.get("/movies/:title/:director", (req, res) => {
 
 app.post("/users", (req,res) => {
   const userData = JSON.parse(req.body);
+  // Add user entry to db
   if(!userData) res.status(400).send("Data missing.");
+  else res.status(201).send(userData);
+});
+
+app.put("/users/:username", (req, res) => {
+  const userData = JSON.parse(req.body);
+  // Find user in db and update properties
+  if(!userData) res.status(400).send("Data missing");
   else res.status(201).send(userData);
 });
 
