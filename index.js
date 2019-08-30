@@ -1,13 +1,15 @@
 // essential web server and logging modules
 const express = require("express"),
+  bodyParser = require("body-parser"),
   morgan = require("morgan"),
- movies = require('./Movies');
+  movies = require("./Movies");
 
 const app = express();
 
 // middleware functions
+app.use(bodyParser.json());
 app.use(morgan("common"));
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use((err, req, res, next) => {
   console.log(err.stack);
   res.status(500).send("Something went wrong");
@@ -24,5 +26,7 @@ app.get("/movies", (req, res) => {
   res.json(movies);
 });
 
-// listen on port 8080 
+app.get("/movies/:title", (req, res) => {});
+
+// listen on port 8080
 app.listen(8080, () => console.log("Server is listening on port 8080"));
