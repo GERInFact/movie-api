@@ -60,6 +60,7 @@ app.get("/movies/:title/:director", (req, res) => {
   else res.json(director);
 });
 
+// add a new user and send back added user data
 app.post("/users", (req,res) => {
   const userData = JSON.parse(req.body);
   // Add user entry to db
@@ -67,6 +68,7 @@ app.post("/users", (req,res) => {
   else res.status(201).send(userData);
 });
 
+// update user and send back updated user data
 app.put("/users/:username", (req, res) => {
   const userData = JSON.parse(req.body);
   // Find user in db and update properties
@@ -74,9 +76,16 @@ app.put("/users/:username", (req, res) => {
   else res.status(201).send(userData);
 });
 
+// remove movie from users movie list
 app.delete("/users/:username/:movies/:title", (req,res) => {
   // Find user in db and delete if movie not found send res.status(404).send(`${req.params.title} not found in your list.`);
   res.status(201).send(`${req.params.title}`);
+});
+
+// remove user from db
+app.delete("/users/:username", (req,res) => {
+  // Find user in db and correlated data and delete entries, if user not found send res.status(404).send("User not found").
+  res.status(201).send(`${req.params.username} was successfully deleted.`);
 });
 
 // listen on port 8080
