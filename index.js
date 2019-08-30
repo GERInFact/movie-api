@@ -1,7 +1,7 @@
 // essential web server and logging modules
 const express = require("express"),
   morgan = require("morgan"),
-  Movie = require("./Movie");
+ movies = require('./Movies');
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 
 // send top 10 movie list, if requested
 app.get("/movies", (req, res) => {
-  res.json();
+  res.json(movies);
 });
 
 // listen on port 8080 
