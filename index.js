@@ -60,5 +60,11 @@ app.get("/movies/:title/:director", (req, res) => {
   else res.json(director);
 });
 
+app.post("/users", (req,res) => {
+  const userData = JSON.parse(req.body);
+  if(!userData) res.status(400).send("Data missing.");
+  else res.status(201).send(userData);
+});
+
 // listen on port 8080
 app.listen(8080, () => console.log("Server is listening on port 8080"));
