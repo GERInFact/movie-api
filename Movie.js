@@ -1,14 +1,12 @@
 class Movie {
-    constructor(title, director, releaseDate, views, rating, description, genre, imgUrl, isFeatured) {
+    constructor(title, description, genre, director, actors, imgUrl, featured) {
         this.title = title;
-        this.director = director;
-        this.releaseDate = releaseDate;
-        this.views = views;
-        this.rating = rating;
         this.description = description;
         this.genre = genre;
+        this.director = director;
+        this.actors = actors;
         this.imgUrl = imgUrl;
-        this.isFeatured = isFeatured;
+        this.featured = featured;
     }
 }
 
