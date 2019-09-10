@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-const Movie = require("./Movie");
 
 // title, description, genre, director, actors, imgUrl, featured
 const movieSchema = mongoose.Schema({
@@ -20,6 +19,8 @@ const userSchema = mongoose.Schema({
     FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: "Movie"}]
 });
 
-const MovieModel = mongoose.model('Movie', movieSchema);
+const movieModel = mongoose.model('Movie', movieSchema);
+const userModel = moongoose.model("User", userSchema);
 
-module.exports.MovieModel = MovieModel;
+module.exports.Movie = movieModel;
+module.exports.User = userModel;
