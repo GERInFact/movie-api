@@ -9,7 +9,9 @@ const express = require("express"),
 const Movies = models.Movie;
 const Users = models.User;
 
-mongoose.connect("mongodb://localhost:27017/myFlixDB", { useNewUrlParser : true });
+mongoose.connect("mongodb://localhost:27017/myFlixDB", {
+  useNewUrlParser: true
+});
 
 const app = express();
 
@@ -77,6 +79,18 @@ app.get("/movies/:title/director", (req, res) => {
   if (!director)
     res.status(404).send(`${req.params.director} Not known as director.`);
   else res.json(director);
+});
+
+// send back all users
+app.get("/users", async (req, res) => {
+  try {
+    const users = await Users.find();
+    if (!users.length) return res.status(400).send("No users yet");
+
+    res.json(users);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 });
 
 // add a new user and send back added user data
