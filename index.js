@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 app.get("/movies", async (req, res) => {
   try {
     const movies = await Movie.find();
-    if(!movies) return res.status(404).send("No movies yet");
+    if(!movies.length) return res.status(404).send("No movies yet");
 
     res.json(movies);
   } catch(err) {
@@ -80,12 +80,24 @@ app.get("/movies/:title/director", (req, res) => {
 });
 
 // add a new user and send back added user data
-app.post("/users", (req,res) => {
-  // const userData = JSON.parse(req.body);
-  // Add user entry to db
-  // if(!userData) res.status(400).send("Data missing.");
-  // else 
-  res.status(201).send(req.body);
+app.post("/users", async (req,res) => {
+  try {
+  const {username, password, email, birth } = req.body;
+
+  const foundUser = await User.find({Username : req.body.username});
+  if(foundUser) return res.status(400).send(`${req.body.username} already exists`);
+
+  const newUser = await User.create({
+    Username: username,
+    Password: password,
+    Email: email,
+    Birth: birth
+  });
+  
+  res.status(201).json(newUser);
+} catch(err) {
+  res.status(500).send(err.message);
+}
 });
 
 // update user and send back updated user data
