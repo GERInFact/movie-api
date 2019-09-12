@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
 });
 
 const movieModel = mongoose.model('Movie', movieSchema);
-const userModel = moongoose.model("User", userSchema);
+const userModel = mongoose.model("User", userSchema);
 
 module.exports.Movie = movieModel;
 module.exports.User = userModel;
