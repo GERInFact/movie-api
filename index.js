@@ -93,6 +93,18 @@ app.get("/users", async (req, res) => {
   }
 });
 
+// send a specific user
+app.get("/users/:username", async (req, res) => {
+  try {
+    const foundUser = await Users.findOne({Username: req.params.username});
+    if(!foundUser) return res.status(400).send(`${req.params.username} not found`);
+
+    res.json(foundUser);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
 // add a new user and send back added user data
 app.post("/users", async (req, res) => {
   try {
