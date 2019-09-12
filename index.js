@@ -9,7 +9,7 @@ const express = require("express"),
 const Movie = models.Movie;
 const User = models.User;
 
-mongoose.connect("mongodb://localhost:27017/myFlixDB");
+mongoose.connect("mongodb://localhost:27017/myFlixDB", { useNewUrlParser : true });
 
 const app = express();
 
@@ -32,10 +32,10 @@ app.get("/", (req, res) => {
 app.get("/movies", async (req, res) => {
   try {
     const movies = await Movie.find();
-    if(!movies.length) return res.status(404).send("No movies yet");
+    if (!movies.length) return res.status(404).send("No movies yet");
 
     res.json(movies);
-  } catch(err) {
+  } catch (err) {
     res.status(500).send(err.message);
   }
 });
@@ -80,24 +80,25 @@ app.get("/movies/:title/director", (req, res) => {
 });
 
 // add a new user and send back added user data
-app.post("/users", async (req,res) => {
+app.post("/users", async (req, res) => {
   try {
-  const {username, password, email, birth } = req.body;
+    const { username, password, email, birth } = req.body;
 
-  const foundUser = await User.find({Username : req.body.username});
-  if(foundUser) return res.status(400).send(`${req.body.username} already exists`);
+    const foundUser = await User.find({ Username: req.body.username });
+    if (foundUser)
+      return res.status(400).send(`${req.body.username} already exists`);
 
-  const newUser = await User.create({
-    Username: username,
-    Password: password,
-    Email: email,
-    Birth: birth
-  });
-  
-  res.status(201).json(newUser);
-} catch(err) {
-  res.status(500).send(err.message);
-}
+    const newUser = await User.create({
+      Username: username,
+      Password: password,
+      Email: email,
+      Birth: birth
+    });
+
+    res.status(201).json(newUser);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 });
 
 // update user and send back updated user data
@@ -105,18 +106,20 @@ app.put("/users/:username", (req, res) => {
   // const userData = JSON.parse(req.body);
   // Find user in db and update properties
   // if(!userData) res.status(400).send("Data missing");
-  // else 
+  // else
   res.status(201).send(`${req.params.username} was successfully updated.`);
 });
 
 // remove movie from users movie list
-app.delete("/users/:username/:movies/:title", (req,res) => {
+app.delete("/users/:username/:movies/:title", (req, res) => {
   // Find user in db and delete if movie not found send res.status(404).send(`${req.params.title} not found in your list.`);
-  res.status(201).send(`${req.params.title} successfully deleted from your movie list.`);
+  res
+    .status(201)
+    .send(`${req.params.title} successfully deleted from your movie list.`);
 });
 
 // remove user from db
-app.delete("/users/:username", (req,res) => {
+app.delete("/users/:username", (req, res) => {
   // Find user in db and correlated data and delete entries, if user not found send res.status(404).send("User not found").
   res.status(201).send(`${req.params.username} was successfully deleted.`);
 });
