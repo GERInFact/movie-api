@@ -2,9 +2,9 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
   morgan = require("morgan"),
-  movies = require("./Movies"),
   mongoose = require("mongoose"),
-  models = require("./models");
+  models = require("./models"),
+  User = require("./User");
 
 const Movies = models.Movie;
 const Users = models.User;
@@ -114,12 +114,7 @@ app.post("/users", async (req, res) => {
     if (foundUser)
       return res.status(400).send(`${req.body.username} already exists`);
 
-    const newUser = await Users.create({
-      Username: username,
-      Password: password,
-      Email: email,
-      Birth: birth
-    });
+    const newUser = await Users.create(new User(username,password,email,birth));
 
     res.status(201).json(newUser);
   } catch (err) {

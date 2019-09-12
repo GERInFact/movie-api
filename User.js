@@ -1,9 +1,10 @@
 class User {
-    constructor(username, password, email, birthDay, favoriteMovies) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.birthDay = birthDay;
-        this.favoriteMovies = favoriteMovies;
+    constructor(username, password, email, birth, favoriteMovies) {
+        this.Username = username;
+        this.Password = password;
+        this.Email = email;
+        this.Birth = birth;
+        this.FavoriteMovies = favoriteMovies;
     }  
 }
+module.exports = User;
