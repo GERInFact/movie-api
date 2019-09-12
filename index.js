@@ -2,7 +2,14 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
   morgan = require("morgan"),
-  movies = require("./Movies");
+  movies = require("./Movies"),
+  mongoose = require("mongoose"),
+  models = require("./models");
+
+const Movie = models.Movie;
+const User = models.User;
+
+mongoose.connect("mongodb://localhost:27017/myFlixDB");
 
 const app = express();
 
@@ -22,8 +29,15 @@ app.get("/", (req, res) => {
 });
 
 // send all movies
-app.get("/movies", (req, res) => {
-  res.json(movies);
+app.get("/movies", async (req, res) => {
+  try {
+    const movies = await Movie.find();
+    if(!movies) return res.status(404).send("No movies yet");
+
+    res.json(movies);
+  } catch(err) {
+    res.status(500).send(err.message);
+  }
 });
 
 // send featured movies
