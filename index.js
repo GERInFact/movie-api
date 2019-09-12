@@ -6,8 +6,8 @@ const express = require("express"),
   mongoose = require("mongoose"),
   models = require("./models");
 
-const Movie = models.Movie;
-const User = models.User;
+const Movies = models.Movie;
+const Users = models.User;
 
 mongoose.connect("mongodb://localhost:27017/myFlixDB", { useNewUrlParser : true });
 
@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 // send all movies
 app.get("/movies", async (req, res) => {
   try {
-    const movies = await Movie.find();
+    const movies = await Movies.find();
     if (!movies.length) return res.status(404).send("No movies yet");
 
     res.json(movies);
@@ -84,11 +84,11 @@ app.post("/users", async (req, res) => {
   try {
     const { username, password, email, birth } = req.body;
 
-    const foundUser = await User.find({ Username: req.body.username });
+    const foundUser = await Users.findOne({ Username: req.body.username });
     if (foundUser)
       return res.status(400).send(`${req.body.username} already exists`);
 
-    const newUser = await User.create({
+    const newUser = await Users.create({
       Username: username,
       Password: password,
       Email: email,
