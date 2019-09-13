@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 app.get("/movies", async (req, res) => {
   try {
     const movies = await Movies.find();
-    if (!movies.length) return res.status(404).send("No movies yet");
+    if (!movies.length) return res.status(400).send("No movies yet");
 
     res.json(movies);
   } catch (err) {
@@ -47,8 +47,15 @@ app.get("/movies", async (req, res) => {
 });
 
 // send featured movies
-app.get("/movies/featured", (req, res) => {
-  res.json(movies.filter(m => m.isFeatured === true));
+app.get("/movies/featured", async (req, res) => {
+ try {
+   const featuredMovies = await Movies.find({Featured: true});
+   if(!featuredMovies.length) return res.status(400).send("No featured movies yet");
+
+   res.json(featuredMovies);
+ } catch(err) {
+    res.status(500).send(err.message);
+ }
 });
 
 // send specific movie by name
