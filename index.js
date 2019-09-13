@@ -136,15 +136,13 @@ app.put("/users/:username", async (req, res) => {
       { $set: new User(username, password, email, birth) },
       { new: true }
     );
-
-    if (!updatedUser) res.status(400).send(`${req.params.username} not found`);
-
-    res.status(201).json(updatedUser);
+    if (!updatedUser)
+      return res.status(400).send(`${req.params.username} not found`);
+    
+      res.status(201).json(updatedUser);
   } catch (err) {
     res.status(500).send(err.message);
   }
-
-  res.status(201).send(`${req.params.username} was successfully updated.`);
 });
 
 // remove movie from users movie list
