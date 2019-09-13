@@ -10,7 +10,9 @@ const Movies = models.Movie;
 const Users = models.User;
 
 mongoose.connect("mongodb://localhost:27017/myFlixDB", {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
 });
 
 const app = express();
@@ -96,8 +98,9 @@ app.get("/users", async (req, res) => {
 // send a specific user
 app.get("/users/:username", async (req, res) => {
   try {
-    const foundUser = await Users.findOne({Username: req.params.username});
-    if(!foundUser) return res.status(400).send(`${req.params.username} not found`);
+    const foundUser = await Users.findOne({ Username: req.params.username });
+    if (!foundUser)
+      return res.status(400).send(`${req.params.username} not found`);
 
     res.json(foundUser);
   } catch (err) {
@@ -114,7 +117,9 @@ app.post("/users", async (req, res) => {
     if (foundUser)
       return res.status(400).send(`${req.body.username} already exists`);
 
-    const newUser = await Users.create(new User(username,password,email,birth));
+    const newUser = await Users.create(
+      new User(username, password, email, birth)
+    );
 
     res.status(201).json(newUser);
   } catch (err) {
@@ -123,11 +128,22 @@ app.post("/users", async (req, res) => {
 });
 
 // update user and send back updated user data
-app.put("/users/:username", (req, res) => {
-  // const userData = JSON.parse(req.body);
-  // Find user in db and update properties
-  // if(!userData) res.status(400).send("Data missing");
-  // else
+app.put("/users/:username", async (req, res) => {
+  try {
+    const { username, password, email, birth } = req.body;
+    const updatedUser = await Users.findOneAndUpdate(
+      { Username: req.params.username },
+      { $set: new User(username, password, email, birth) },
+      { new: true }
+    );
+
+    if (!updatedUser) res.status(400).send(`${req.params.username} not found`);
+
+    res.status(201).json(updatedUser);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+
   res.status(201).send(`${req.params.username} was successfully updated.`);
 });
 
