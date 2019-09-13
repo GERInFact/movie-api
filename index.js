@@ -1,4 +1,6 @@
 // essential web server and logging modules
+// jshint esversion: 8
+
 const express = require("express"),
   bodyParser = require("body-parser"),
   morgan = require("morgan"),
@@ -118,7 +120,7 @@ app.post("/users", async (req, res) => {
       return res.status(400).send(`${req.body.username} already exists`);
 
     const newUser = await Users.create(
-      new User(username, password, email, birth)
+      new User(username, password, email, birth, [])
     );
 
     res.status(201).json(newUser);
@@ -133,13 +135,30 @@ app.put("/users/:username", async (req, res) => {
     const { username, password, email, birth } = req.body;
     const updatedUser = await Users.findOneAndUpdate(
       { Username: req.params.username },
-      { $set: new User(username, password, email, birth) },
+      { $set: new User(username, password, email, birth, []) },
       { new: true }
     );
     if (!updatedUser)
       return res.status(400).send(`${req.params.username} not found`);
-    
-      res.status(201).json(updatedUser);
+
+    res.status(201).json(updatedUser);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+// update users favorite movies
+app.put("/users/:username/movies/:movieId", async (req, res) => {
+  try {
+    const { username, movieId } = req.params;
+    const updatedUser = await Users.findOneAndUpdate(
+      { Username: username },
+      { $push: { FavoriteMovies: movieId } },
+      { new: true }
+    );
+    if(!updatedUser) return res.status(400).send(`${username} not found`);
+
+    res.status(201).json(updatedUser);
   } catch (err) {
     res.status(500).send(err.message);
   }
