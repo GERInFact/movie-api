@@ -199,11 +199,20 @@ app.put("/users/:username/movies/:movieId", async (req, res) => {
 });
 
 // remove movie from users movie list
-app.delete("/users/:username/:movies/:title", (req, res) => {
-  // Find user in db and delete if movie not found send res.status(404).send(`${req.params.title} not found in your list.`);
-  res
-    .status(201)
-    .send(`${req.params.title} successfully deleted from your movie list.`);
+app.delete("/users/:username/movies/:movieId", async (req, res) => {
+  try {
+    const { username, movieId } = req.params;
+    const updatedUser = await Users.findOneAndUpdate(
+      { Username: username },
+      { $pull: { FavoriteMovies: movieId } },
+      { new: true }
+    );
+    if (!updatedUser) return res.status(400).send(`${username} not found`);
+
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 });
 
 // remove user from db
