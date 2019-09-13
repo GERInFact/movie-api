@@ -106,16 +106,58 @@
         </li>
         <li class="documentation_item">
           <p class="item_description">
+            Endpoint URL: '/movies/genres/:genre' <br />
+            Method: GET <br />
+            Parameters: :genre (required)
+          </p>
+          <p class="item_description">
+            Returns a list of movies of a certain genre
+          </p>
+          <p class="item_description">
+            Response: JSON <br />
+            Request body: none
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
             Endpoint URL: '/movies/:title/director' <br />
             Method: GET <br />
             Parameters: :title (required)
           </p>
           <p class="item_description">
-            Returns director information of the movie selected by its title
+            Returns the director of the movie selected by its title
           </p>
           <p class="item_description">
             Response: JSON <br />
             Request body: none
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/users' <br />
+            Method: GET <br />
+            Parameters: none
+          </p>
+          <p class="item_description">
+           Returns a list of all users
+          </p>
+          <p class="item_description">
+            Response: JSON <br />
+            Request body: none <br />
+          </p>
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/users/:username' <br />
+            Method: GET <br />
+            Parameters: :username (required)
+          </p>
+          <p class="item_description">
+           Returns a list of a certain user selected by his username
+          </p>
+          <p class="item_description">
+            Response: JSON <br />
+            Request body: none <br />
           </p>
         </li>
         <li class="documentation_item">
@@ -131,8 +173,8 @@
           <p class="item_description">
             Response: Text <br />
             Request body: JSON <br />
-            Format: {"username" : "value","password" : "value", "email":
-            "value", "dateOfBirth" : "value" }
+            Format: {"username" : String,"password" : String, "email":
+            String, "dateOfBirth" : String / Date }
           </p>
         </li>
         <li class="documentation_item">
@@ -147,23 +189,36 @@
           <p class="item_description">
             Response: Text <br />
             Request body: JSON <br />
-            Format: {"username" : "value","password" : "value", "email":
-            "value", "dateOfBirth" : "value" }
+            Format: {"username" : String, "password" : String, "email":
+            String, "dateOfBirth" : String / Date }
           </p>
         </li>
         <li class="documentation_item">
           <p class="item_description">
-            Endpoint URL: '/users/:username/:movies/:title' <br />
+            Endpoint URL: '/users/:username/movies/:movieId' <br />
+            Method: PUT <br />
+            Parameters: :username (required), :moveiId (required)
+          </p>
+          <p class="item_description">
+            Updates the favorite movies of a certain user
+          </p>
+          <p class="item_description">
+            Response: JSON <br />
+            Request body: none <br />
+            Format:none
+        </li>
+        <li class="documentation_item">
+          <p class="item_description">
+            Endpoint URL: '/users/:username/movies/:movieId' <br />
             Method: DELETE <br />
-            Parameters: :username (required), :movies (required), :title
-            (required)
+            Parameters: :username (required), :movieId (required)
           </p>
           <p class="item_description">
-            Deletes a specific movie, selected by its title, from the users
-            movie list
+            Deletes a specific movie, selected by its id, from the users
+            favorite movies
           </p>
           <p class="item_description">
-            Response: Text <br />
+            Response: JSON <br />
             Request body: none
           </p>
         </li>
@@ -185,20 +240,32 @@
         <li class="documentation_item">
           Info
           <p class="item_description">
-            Replace ':parameter' in your URL with some value
+            Replace all ':parameter' in your URL with proper values
           </p>
           <p class="item_description">
-            URL: http://localhost:8080/movies/Snowden <br />
+            E.g. http://localhost:8080/movies/Silence of the Lambs <br />
             <br />
-            Response (JSON): { "title": "Snowden", "director": "Oliver Stone",
-            "releaseDate": "2019-08-30T10:30:55.034Z", "views":
-            183.3791607679649, "rating": 3.282957315261641, "description": "An
-            epic movie.", "genre": "Biographical Thriller", "imgUrl":
-            "https://en.wikipedia.org/wiki/Snowden_(film)#/media/File:Snowden_film_poster.jpg"
-            }
+            Response (JSON): {
+              "Genre": {
+                  "Name": "Thriller",
+                  "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience."
+              },
+              "Director": {
+                  "Name": "Jonathan Demme",
+                  "Bio": "Updated Bio",
+                  "Birth": "1944",
+                  "Death": "2017"
+              },
+              "Actors": [],
+              "_id": "5d734738dc0f0a45d0d2d917",
+              "Title": "Silence of the Lambs",
+              "Description": "Updated at the night",
+              "ImagePath": "silenceofthelambs.png",
+              "Featured": true
+          }
           </p>
           <p class="item_description">
-            All request are resolved at port: 8080
+            All requests are resolved at port: 8080
           </p>
         </li>
       </ul>
