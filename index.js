@@ -59,19 +59,19 @@ app.get("/movies/featured", async (req, res) => {
 });
 
 // send specific movie by name
-app.get("/movies/:title", (req, res) => {
-  const movie = movies.find(m => m.title === req.params.title);
-  if (!movie)
-    res.status(404).send(`No movie found with the title: ${req.params.title}.`);
-  else res.json(movie);
+app.get("/movies/:title", async (req, res) => {
+  try {
+    const foundMovie = await Movies.findOne({Title: req.params.title});
+    if(!foundMovie) return res.status(400).send(`${req.params.title} not found`);
+
+    res.json(foundMovie);
+  }catch(err) {
+    res.status(500).send(err.message);
+  }
 });
 
 // send genre of a specific movie
 app.get("/movies/:title/genre", (req, res) => {
-  const genreInfo = movies.find(m => m.title === req.params.title).genre;
-  if (!genreInfo)
-    res.status(404).send(`No genre found for ${req.params.title}.`);
-  else res.json(genreInfo);
 });
 
 // send movie list of a specific genre
