@@ -156,7 +156,7 @@ app.put("/users/:username/movies/:movieId", async (req, res) => {
       { $push: { FavoriteMovies: movieId } },
       { new: true }
     );
-    if(!updatedUser) return res.status(400).send(`${username} not found`);
+    if (!updatedUser) return res.status(400).send(`${username} not found`);
 
     res.status(201).json(updatedUser);
   } catch (err) {
@@ -173,9 +173,18 @@ app.delete("/users/:username/:movies/:title", (req, res) => {
 });
 
 // remove user from db
-app.delete("/users/:username", (req, res) => {
-  // Find user in db and correlated data and delete entries, if user not found send res.status(404).send("User not found").
-  res.status(201).send(`${req.params.username} was successfully deleted.`);
+app.delete("/users/:username", async (req, res) => {
+  try {
+    const deletedUser = await Users.findOneAndRemove({
+      Username: req.params.username
+    });
+    if (!deletedUser)
+      return res.status(400).send(`${req.params.username} not found`);
+
+    res.status(200).send(`${req.params.username} was deleted.`);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 });
 
 // listen on port 8080
