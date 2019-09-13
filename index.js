@@ -48,30 +48,40 @@ app.get("/movies", async (req, res) => {
 
 // send featured movies
 app.get("/movies/featured", async (req, res) => {
- try {
-   const featuredMovies = await Movies.find({Featured: true});
-   if(!featuredMovies.length) return res.status(400).send("No featured movies yet");
+  try {
+    const featuredMovies = await Movies.find({ Featured: true });
+    if (!featuredMovies.length)
+      return res.status(400).send("No featured movies yet");
 
-   res.json(featuredMovies);
- } catch(err) {
+    res.json(featuredMovies);
+  } catch (err) {
     res.status(500).send(err.message);
- }
+  }
 });
 
 // send specific movie by name
 app.get("/movies/:title", async (req, res) => {
   try {
-    const foundMovie = await Movies.findOne({Title: req.params.title});
-    if(!foundMovie) return res.status(400).send(`${req.params.title} not found`);
+    const foundMovie = await Movies.findOne({ Title: req.params.title });
+    if (!foundMovie)
+      return res.status(400).send(`${req.params.title} not found`);
 
     res.json(foundMovie);
-  }catch(err) {
+  } catch (err) {
     res.status(500).send(err.message);
   }
 });
 
 // send genre of a specific movie
-app.get("/movies/:title/genre", (req, res) => {
+app.get("/movies/:title/genre", async (req, res) => {
+  try {
+    const genreOfMovie = await Movies.findOne({Title : req.params.title}).select("Genre");
+    if(!genreOfMovie) return res.status(400).send(`${req.params.title} not found`);
+
+    res.json(genreOfMovie);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 });
 
 // send movie list of a specific genre
