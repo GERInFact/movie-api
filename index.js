@@ -6,7 +6,9 @@ const express = require("express"),
   morgan = require("morgan"),
   mongoose = require("mongoose"),
   models = require("./models"),
-  User = require("./User");
+  User = require("./User"),
+  passport =  require("passport");
+require("./passport");
 
 const Movies = models.Movie;
 const Users = models.User;
@@ -21,6 +23,9 @@ const app = express();
 
 // middleware functions
 app.use(bodyParser.json());
+
+const auth = require("./auth")(app);
+
 app.use(morgan("common"));
 app.use(express.static("public"));
 app.use((err, req, res, next) => {
@@ -35,7 +40,7 @@ app.get("/", (req, res) => {
 });
 
 // send all movies
-app.get("/movies", async (req, res) => {
+app.get("/movies", passport.authenticate("jwt", {session: false}) ,async (req, res) => {
   try {
     const movies = await Movies.find();
     if (!movies.length) return res.status(400).send("No movies yet");
