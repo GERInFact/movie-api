@@ -7,7 +7,7 @@ const express = require("express"),
   mongoose = require("mongoose"),
   models = require("./models"),
   User = require("./User"),
-  passport =  require("passport");
+  passport = require("passport");
 require("./passport");
 
 const Movies = models.Movie;
@@ -40,114 +40,146 @@ app.get("/", (req, res) => {
 });
 
 // send all movies
-app.get("/movies", passport.authenticate("jwt", {session: false}) ,async (req, res) => {
-  try {
-    const movies = await Movies.find();
-    if (!movies.length) return res.status(400).send("No movies yet");
+app.get(
+  "/movies",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const movies = await Movies.find();
+      if (!movies.length) return res.status(400).send("No movies yet");
 
-    res.json(movies);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.json(movies);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // send featured movies
-app.get("/movies/featured", async (req, res) => {
-  try {
-    const featuredMovies = await Movies.find({ Featured: true });
-    if (!featuredMovies.length)
-      return res.status(400).send("No featured movies yet");
+app.get(
+  "/movies/featured",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const featuredMovies = await Movies.find({ Featured: true });
+      if (!featuredMovies.length)
+        return res.status(400).send("No featured movies yet");
 
-    res.json(featuredMovies);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.json(featuredMovies);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // send specific movie by name
-app.get("/movies/:title", async (req, res) => {
-  try {
-    const foundMovie = await Movies.findOne({ Title: req.params.title });
-    if (!foundMovie)
-      return res.status(400).send(`${req.params.title} not found`);
+app.get(
+  "/movies/:title",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const foundMovie = await Movies.findOne({ Title: req.params.title });
+      if (!foundMovie)
+        return res.status(400).send(`${req.params.title} not found`);
 
-    res.json(foundMovie);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.json(foundMovie);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // send genre of a specific movie
-app.get("/movies/:title/genre", async (req, res) => {
-  try {
-    const genreOfMovie = await Movies.findOne({
-      Title: req.params.title
-    }).select("Genre");
-    if (!genreOfMovie)
-      return res.status(400).send(`${req.params.title} not found`);
+app.get(
+  "/movies/:title/genre",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const genreOfMovie = await Movies.findOne({
+        Title: req.params.title
+      }).select("Genre");
+      if (!genreOfMovie)
+        return res.status(400).send(`${req.params.title} not found`);
 
-    res.json(genreOfMovie);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.json(genreOfMovie);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // send movie list of a specific genre
-app.get("/movies/genres/:genre", async (req, res) => {
-  try {
-    const moviesWithGenre = await Movies.find({
-      "Genre.Name": req.params.genre
-    });
-    if (!moviesWithGenre)
-      return res
-        .status(400)
-        .send(`No movies found with Genre: ${req.params.genre}`);
+app.get(
+  "/movies/genres/:genre",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const moviesWithGenre = await Movies.find({
+        "Genre.Name": req.params.genre
+      });
+      if (!moviesWithGenre)
+        return res
+          .status(400)
+          .send(`No movies found with Genre: ${req.params.genre}`);
 
-    res.json(moviesWithGenre);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.json(moviesWithGenre);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // send director information of a certain movie
-app.get("/movies/:title/director", async (req, res) => {
-  try {
-    const directorOfMovie = await Movies.findOne({
-      Title: req.params.title
-    }).select("Director");
-    if (!directorOfMovie)
-      return res.status(400).send(`${req.params.title} not found`);
+app.get(
+  "/movies/:title/director",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const directorOfMovie = await Movies.findOne({
+        Title: req.params.title
+      }).select("Director");
+      if (!directorOfMovie)
+        return res.status(400).send(`${req.params.title} not found`);
 
-    res.json(directorOfMovie);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.json(directorOfMovie);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // send back all users
-app.get("/users", async (req, res) => {
-  try {
-    const users = await Users.find();
-    if (!users.length) return res.status(400).send("No users yet");
+app.get(
+  "/users",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const users = await Users.find();
+      if (!users.length) return res.status(400).send("No users yet");
 
-    res.json(users);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.json(users);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // send a specific user
-app.get("/users/:username", async (req, res) => {
-  try {
-    const foundUser = await Users.findOne({ Username: req.params.username });
-    if (!foundUser)
-      return res.status(400).send(`${req.params.username} not found`);
+app.get(
+  "/users/:username",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const foundUser = await Users.findOne({ Username: req.params.username });
+      if (!foundUser)
+        return res.status(400).send(`${req.params.username} not found`);
 
-    res.json(foundUser);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.json(foundUser);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // add a new user and send back added user data
 app.post("/users", async (req, res) => {
@@ -169,71 +201,87 @@ app.post("/users", async (req, res) => {
 });
 
 // update user and send back updated user data
-app.put("/users/:username", async (req, res) => {
-  try {
-    const { username, password, email, birth } = req.body;
-    const updatedUser = await Users.findOneAndUpdate(
-      { Username: req.params.username },
-      { $set: new User(username, password, email, birth, []) },
-      { new: true }
-    );
-    if (!updatedUser)
-      return res.status(400).send(`${req.params.username} not found`);
+app.put(
+  "/users/:username",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const { username, password, email, birth } = req.body;
+      const updatedUser = await Users.findOneAndUpdate(
+        { Username: req.params.username },
+        { $set: new User(username, password, email, birth, []) },
+        { new: true }
+      );
+      if (!updatedUser)
+        return res.status(400).send(`${req.params.username} not found`);
 
-    res.status(201).json(updatedUser);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.status(201).json(updatedUser);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // update users favorite movies
-app.put("/users/:username/movies/:movieId", async (req, res) => {
-  try {
-    const { username, movieId } = req.params;
-    const updatedUser = await Users.findOneAndUpdate(
-      { Username: username },
-      { $push: { FavoriteMovies: movieId } },
-      { new: true }
-    );
-    if (!updatedUser) return res.status(400).send(`${username} not found`);
+app.put(
+  "/users/:username/movies/:movieId",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const { username, movieId } = req.params;
+      const updatedUser = await Users.findOneAndUpdate(
+        { Username: username },
+        { $push: { FavoriteMovies: movieId } },
+        { new: true }
+      );
+      if (!updatedUser) return res.status(400).send(`${username} not found`);
 
-    res.status(201).json(updatedUser);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.status(201).json(updatedUser);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // remove movie from users movie list
-app.delete("/users/:username/movies/:movieId", async (req, res) => {
-  try {
-    const { username, movieId } = req.params;
-    const updatedUser = await Users.findOneAndUpdate(
-      { Username: username },
-      { $pull: { FavoriteMovies: movieId } },
-      { new: true }
-    );
-    if (!updatedUser) return res.status(400).send(`${username} not found`);
+app.delete(
+  "/users/:username/movies/:movieId",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const { username, movieId } = req.params;
+      const updatedUser = await Users.findOneAndUpdate(
+        { Username: username },
+        { $pull: { FavoriteMovies: movieId } },
+        { new: true }
+      );
+      if (!updatedUser) return res.status(400).send(`${username} not found`);
 
-    res.json(updatedUser);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.json(updatedUser);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // remove user from db
-app.delete("/users/:username", async (req, res) => {
-  try {
-    const deletedUser = await Users.findOneAndRemove({
-      Username: req.params.username
-    });
-    if (!deletedUser)
-      return res.status(400).send(`${req.params.username} not found`);
+app.delete(
+  "/users/:username",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const deletedUser = await Users.findOneAndRemove({
+        Username: req.params.username
+      });
+      if (!deletedUser)
+        return res.status(400).send(`${req.params.username} not found`);
 
-    res.status(200).send(`${req.params.username} was deleted.`);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.status(200).send(`${req.params.username} was deleted.`);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // listen on port 8080
 app.listen(8080, () => console.log("Server is listening on port 8080"));
