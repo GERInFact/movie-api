@@ -8,7 +8,8 @@ const express = require("express"),
   models = require("./models"),
   User = require("./User"),
   passport = require("passport"),
-  cors = requrie("cors");
+  cors = requrie("cors"),
+  { check, validationResult } = require("express-validator");
 require("./passport");
 
 const Movies = models.Movie;
@@ -195,24 +196,42 @@ app.get(
 );
 
 // add a new user and send back added user data
-app.post("/users", async (req, res) => {
-  try {
-    const { username, password, email, birth } = req.body;
+app.post(
+  "/users",
+  [
+    check("username", "username is required").isLength({ min: 5 }),
+    check(
+      "username",
+      "username contains non alphanumeric characters - not allowed."
+    ).isAlphanumeric(),
+    check("password", "password is required")
+      .not()
+      .isEmpty(),
+    check("email", "email does not appear to be valid").isEmail()
+  ],
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty())
+        return res.status(422).json({ errors: errors.array() });
 
-    const foundUser = await Users.findOne({ Username: req.body.username });
-    if (foundUser)
-      return res.status(400).send(`${req.body.username} already exists`);
+      const { username, password, email, birth } = req.body;
 
-    const hashedPassword = Users.hashPassword(password);
-    const newUser = await Users.create(
-      new User(username, hashedPassword, email, birth, [])
-    );
+      const foundUser = await Users.findOne({ Username: req.body.username });
+      if (foundUser)
+        return res.status(400).send(`${req.body.username} already exists`);
 
-    res.status(201).json(newUser);
-  } catch (err) {
-    res.status(500).send(err.message);
+      const hashedPassword = Users.hashPassword(password);
+      const newUser = await Users.create(
+        new User(username, hashedPassword, email, birth, [])
+      );
+
+      res.status(201).json(newUser);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // update user and send back updated user data
 app.put(
