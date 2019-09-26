@@ -15,14 +15,13 @@ require("./passport");
 const Movies = models.Movie;
 const Users = models.User;
 
-mongoose.connect("mongodb+srv://myFlixDBAdmin:erpan01ram@myflixdb-enhrc.mongodb.net/myFlixDB?retryWrites=true&w=majority", {
+mongoose.connect("", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
 });
 
 const app = express();
-const allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
 // middleware functions
 app.use(cors());
 app.use(bodyParser.json());
@@ -225,9 +224,24 @@ app.post(
 // update user and send back updated user data
 app.put(
   "/users/:username",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),[
+    check("username", "username is required").isLength({ min: 5 }),
+    check(
+      "username",
+      "username contains non alphanumeric characters - not allowed."
+    ).isAlphanumeric(),
+    check("password", "password is required")
+      .not()
+      .isEmpty(),
+    check("email", "email does not appear to be valid").isEmail()
+  ],
   async (req, res) => {
     try {
+
+      const errors = validationResult(req);
+      if (!errors.isEmpty())
+        return res.status(422).json({ errors: errors.array() });
+
       const { username, password, email, birth } = req.body;
       const updatedUser = await Users.findOneAndUpdate(
         { Username: req.params.username },
