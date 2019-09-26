@@ -15,7 +15,7 @@ require("./passport");
 const Movies = models.Movie;
 const Users = models.User;
 
-mongoose.connect("mongodb+srv://myFlixDBAdmin:erpan01ram@myflixdb-enhrc.mongodb.net/myFlixDB?retryWrites=true&w=majority", {
+mongoose.connect("", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
@@ -243,9 +243,10 @@ app.put(
         return res.status(422).json({ errors: errors.array() });
 
       const { username, password, email, birth } = req.body;
+      const hashedPassword = Users.hashPassword(password);
       const updatedUser = await Users.findOneAndUpdate(
         { Username: req.params.username },
-        { $set: new User(username, password, email, birth, []) },
+        { $set: new User(username, hashedPassword, email, birth, []) },
         { new: true }
       );
       if (!updatedUser)
