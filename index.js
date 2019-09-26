@@ -15,7 +15,7 @@ require("./passport");
 const Movies = models.Movie;
 const Users = models.User;
 
-mongoose.connect("mongodb://localhost:27017/myFlixDB", {
+mongoose.connect("mongodb+srv://myFlixDBAdmin:erpan01ram@myflixdb-enhrc.mongodb.net/myFlixDB?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
@@ -317,4 +317,4 @@ app.delete(
 );
 
 // listen on port 8080
-app.listen(process.env.PORT, () => console.log("Server is listening on port 8080"));
+app.listen(process.env.PORT || 3000, "0.0.0.0", () => console.log("Server is listening on port 8080"));
