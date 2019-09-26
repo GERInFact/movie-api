@@ -8,7 +8,7 @@ const express = require("express"),
   models = require("./models"),
   User = require("./User"),
   passport = require("passport"),
-  cors = requrie("cors"),
+  cors = require("cors"),
   { check, validationResult } = require("express-validator");
 require("./passport");
 
