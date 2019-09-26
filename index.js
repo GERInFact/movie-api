@@ -7,7 +7,8 @@ const express = require("express"),
   mongoose = require("mongoose"),
   models = require("./models"),
   User = require("./User"),
-  passport = require("passport");
+  passport = require("passport"),
+  cors = requrie("cors");
 require("./passport");
 
 const Movies = models.Movie;
@@ -22,6 +23,7 @@ mongoose.connect("mongodb://localhost:27017/myFlixDB", {
 const app = express();
 
 // middleware functions
+app.use(cors());
 app.use(bodyParser.json());
 
 const auth = require("./auth")(app);
