@@ -19,7 +19,7 @@ mongoose.connect("mongodb+srv://myFlixDBAdmin:erpan01ram@myflixdb-enhrc.mongodb.
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
-});
+}).catch(err => console.log(err.message));
 
 const app = express();
 // middleware functions
