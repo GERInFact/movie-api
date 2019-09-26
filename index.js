@@ -21,9 +21,18 @@ mongoose.connect("mongodb://localhost:27017/myFlixDB", {
 });
 
 const app = express();
-
+const allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
 // middleware functions
-app.use(cors());
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!allowedOrigins.includes(origin)) {
+      const message = `The CORS policy for this application doesn't allow access from origin ${origin}`;
+      return callback(new Error(message), false);
+    }
+
+    return callback(null, true);
+  }
+}));
 app.use(bodyParser.json());
 
 const auth = require("./auth")(app);
