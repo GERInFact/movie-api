@@ -20,8 +20,8 @@ module.exports = router => {
           user: user
         });
       }
-      console.log("SHIT "+req.body);
       req.login(user, { session: false }, err => {
+        console.log("SHIT "+req.body);
         if (err) {
           res.send(err);
         }
