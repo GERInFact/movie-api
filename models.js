@@ -1,4 +1,6 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose"), bcrypt = require("bcrypt");
+
+const saltRounds = 10;
 
 // title, description, genre, director, actors, imgUrl, featured
 const movieSchema = mongoose.Schema({
@@ -18,6 +20,9 @@ const userSchema = mongoose.Schema({
     Birth: Date,
     FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: "Movie"}]
 });
+
+userSchema.statics.hashPassword = (password) => bcrypt.hashSync(password, saltRounds);
+userSchema.statics.validatePassword = (password) => bcrypt.compareSync(password, this.Password);
 
 const movieModel = mongoose.model('Movie', movieSchema);
 const userModel = mongoose.model("User", userSchema);
