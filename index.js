@@ -15,7 +15,7 @@ require("./passport");
 const Movies = models.Movie;
 const Users = models.User;
 
-mongoose.connect("mongodb+srv://myFlixDBAdmin:erpan01ram@myflixdb-enhrc.mongodb.net/myFlixDB?retryWrites=true&w=majority", {
+mongoose.connect("", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
