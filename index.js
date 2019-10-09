@@ -15,11 +15,16 @@ require("./passport");
 const Movies = models.Movie;
 const Users = models.User;
 
-mongoose.connect("mongodb+srv://myFlixDBAdmin:erpan01ram@myflixdb-enhrc.mongodb.net/myFlixDB?retryWrites=true&w=majority", {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true
-}).catch(err => console.log(err.message));
+mongoose
+  .connect(
+    "mongodb+srv://myFlixDBAdmin:erpan01ram@myflixdb-enhrc.mongodb.net/myFlixDB?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true
+    }
+  )
+  .catch(err => console.log(err.message));
 
 const app = express();
 // middleware functions
@@ -42,20 +47,16 @@ app.get("/", (req, res) => {
 });
 
 // send all movies
-app.get(
-  "/movies",
-  passport.authenticate("jwt", { session: false }),
-  async (req, res) => {
-    try {
-      const movies = await Movies.find();
-      if (!movies.length) return res.status(400).send("No movies yet");
+app.get("/movies", async (req, res) => {
+  try {
+    const movies = await Movies.find();
+    if (!movies.length) return res.status(400).send("No movies yet");
 
-      res.json(movies);
-    } catch (err) {
-      res.status(500).send(err.message);
-    }
+    res.json(movies);
+  } catch (err) {
+    res.status(500).send(err.message);
   }
-);
+});
 
 // send featured movies
 app.get(
@@ -224,7 +225,8 @@ app.post(
 // update user and send back updated user data
 app.put(
   "/users/:username",
-  passport.authenticate("jwt", { session: false }),[
+  passport.authenticate("jwt", { session: false }),
+  [
     check("username", "username is required").isLength({ min: 5 }),
     check(
       "username",
@@ -237,7 +239,6 @@ app.put(
   ],
   async (req, res) => {
     try {
-
       const errors = validationResult(req);
       if (!errors.isEmpty())
         return res.status(422).json({ errors: errors.array() });
