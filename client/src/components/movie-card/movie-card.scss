@@ -1,0 +1,25 @@
+$card-glow: #70416d;
+$card-color: #99d8d0;
+$card-text: #170a19;
+
+.movie-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    color: $card-text;
+    background-color: $card-color;
+    border-bottom: 10px solid rgba(0,0,0,.3);
+    font-size: 25px;
+    font-family: sans-serif;
+    text-align: center;
+    transition: all .3s;
+}
+
+.movie-card:hover, .movie-card:focus {
+    cursor: pointer;
+    box-shadow: 0 0 10px 3px $card-glow;
+    transform: translate(0,-5px);
+
+}

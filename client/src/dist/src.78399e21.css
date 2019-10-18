@@ -1,0 +1,65 @@
+.movie-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  color: #170a19;
+  background-color: #99d8d0;
+  border-bottom: 10px solid rgba(0, 0, 0, 0.3);
+  font-size: 25px;
+  font-family: sans-serif;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.movie-card:hover, .movie-card:focus {
+  cursor: pointer;
+  box-shadow: 0 0 10px 3px #70416d;
+  transform: translate(0, -5px);
+}
+.movie-view {
+  grid-column: 1/-1;
+  font-size: 25px;
+  display: flex;
+  flex-flow: column wrap;
+  color: #170a19;
+}
+.movie-view .label {
+  font-size: 30px;
+}
+.movie-view .value {
+  font-family: sans-serif;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+.movie-view .movie-close .close {
+  text-decoration: none;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  color: #170a19;
+  background-color: #99d8d0;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.3);
+}
+.movie-view .movie-close .close:hover, .movie-view .movie-close .close:focus {
+  cursor: pointer;
+  box-shadow: 0 0 5px 3px #70416d;
+}
+.main-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+.main-view .title {
+  grid-column: 1/-1;
+  text-align: center;
+  font-size: 45px;
+}
+body {
+  background-color: #e4f2f0;
+  padding: 20px;
+}
+
+/*# sourceMappingURL=/src.78399e21.css.map */
