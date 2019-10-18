@@ -37,6 +37,7 @@
   cursor: pointer;
   box-shadow: 0 0 10px 3px #70416d;
   transform: translate(0, -5px);
+  opacity: 0.8;
 }
 .movie-view {
   grid-column: 1/-1;
