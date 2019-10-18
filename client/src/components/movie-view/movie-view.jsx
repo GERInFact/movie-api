@@ -28,7 +28,7 @@ export class MovieView extends React.Component {
         {/* Description End */}
 
         {/* Poster */}
-        <img className="movie-poster" src={movie.ImagePath} />
+        <img className="movie-poster" src={movie.ImageUrl} />
         {/* Poster End */}
 
         {/* Genre */}

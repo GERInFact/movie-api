@@ -34800,7 +34800,9 @@ function (_React$Component) {
           return _onClick(movie);
         },
         className: "movie-card"
-      }, movie.Title, " by ", movie.Director.Name);
+      }, _react.default.createElement("img", {
+        src: movie.ImageUrl
+      }), movie.Title, " by ", movie.Director.Name);
     }
   }]);
 
@@ -34895,7 +34897,7 @@ function (_React$Component) {
         className: "value"
       }, movie.Description)), _react.default.createElement("img", {
         className: "movie-poster",
-        src: movie.ImagePath
+        src: movie.ImageUrl
       }), _react.default.createElement("div", {
         className: "movie-genre"
       }, _react.default.createElement("div", {
