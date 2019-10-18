@@ -15,6 +15,10 @@ $card-text: #170a19;
     font-family: sans-serif;
     text-align: center;
     transition: all .3s;
+    img {
+        margin-right: 10px;
+        width: 100px;
+    }
 }
 
 .movie-card:hover, .movie-card:focus {

@@ -12,6 +12,10 @@
   text-align: center;
   transition: all 0.3s;
 }
+.movie-card img {
+  margin-right: 10px;
+  width: 100px;
+}
 
 .movie-card:hover, .movie-card:focus {
   cursor: pointer;
