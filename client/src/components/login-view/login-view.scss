@@ -1,0 +1,15 @@
+$card-glow: #70416d;
+$card-color: #99d8d0;
+$card-text: #170a19;
+
+.submit {
+    border: 0;
+    color: $card-text;
+    background-color: $card-color;
+    
+}
+.submit:hover, .submit:focus {
+    color: $card-text;
+    background-color: $card-color;
+    box-shadow: 0 0 5px 3px $card-glow;
+}

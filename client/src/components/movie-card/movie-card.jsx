@@ -12,7 +12,9 @@ export class MovieCard extends React.Component {
     return (
       <div onClick={() => onClick(movie)} className="movie-card">
         <img src={movie.ImageUrl}/>
-        {movie.Title} by {movie.Director.Name}
+        <h2>{movie.Title}</h2>
+        <p> by {movie.Director.Name}</p>
+        <h3>{movie.Description.slice(0,30)}...</h3>
       </div>
     );
   }

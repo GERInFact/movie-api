@@ -4,7 +4,7 @@ $card-text: #170a19;
 
 .movie-card {
     display: flex;
-    justify-content: center;
+    flex-flow: column wrap;
     align-items: center;
     padding: 10px;
     border-radius: 5px;
@@ -16,8 +16,7 @@ $card-text: #170a19;
     text-align: center;
     transition: all .3s;
     img {
-        margin-right: 10px;
-        width: 100px;
+        width: 100%;
     }
 }
 

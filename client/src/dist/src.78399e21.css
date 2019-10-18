@@ -1,6 +1,17 @@
+.submit {
+  border: 0;
+  color: #170a19;
+  background-color: #99d8d0;
+}
+
+.submit:hover, .submit:focus {
+  color: #170a19;
+  background-color: #99d8d0;
+  box-shadow: 0 0 5px 3px #70416d;
+}
 .movie-card {
   display: flex;
-  justify-content: center;
+  flex-flow: column wrap;
   align-items: center;
   padding: 10px;
   border-radius: 5px;
@@ -13,8 +24,7 @@
   transition: all 0.3s;
 }
 .movie-card img {
-  margin-right: 10px;
-  width: 100px;
+  width: 100%;
 }
 
 .movie-card:hover, .movie-card:focus {
