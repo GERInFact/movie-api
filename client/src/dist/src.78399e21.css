@@ -2,6 +2,9 @@
   border: 0;
   color: #170a19;
   background-color: #99d8d0;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+  font-weight: 700;
 }
 
 .submit:hover, .submit:focus {
@@ -21,6 +24,8 @@
   font-size: 25px;
   font-family: sans-serif;
   text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
   transition: all 0.3s;
 }
 .movie-card img {

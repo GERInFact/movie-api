@@ -6,6 +6,9 @@ $card-text: #170a19;
     border: 0;
     color: $card-text;
     background-color: $card-color;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    font-weight: 700;
     
 }
 .submit:hover, .submit:focus {
