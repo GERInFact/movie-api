@@ -1,5 +1,5 @@
 import React from "react";
-import ProtoTypes from "prop-types";
+import PropTypes from "prop-types";
 import "./movie-card.scss";
 
 export class MovieCard extends React.Component {
@@ -20,7 +20,13 @@ export class MovieCard extends React.Component {
 
 MovieCard.protoTypes = {
   movie: PropTypes.shape({
-    Title: PropTypes.string
+    Title: PropTypes.string,
+    Description: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired
+    }).isRequired
   }).isRequired,
   onClick: PropTypes.func.isRequired
 };

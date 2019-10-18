@@ -33,6 +33,9 @@
   margin-bottom: 10px;
   text-align: justify;
 }
+.movie-view .movie-poster {
+  width: 100px;
+}
 .movie-view .movie-close .close {
   text-decoration: none;
   border: 0;
