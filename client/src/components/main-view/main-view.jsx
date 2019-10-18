@@ -2,8 +2,10 @@ import React from "react";
 import axios from "axios";
 
 import { LoginView } from "../login-view/login-view";
+import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import Button from "react-bootstrap/Button";
 
 import "./main-view.scss";
 
@@ -15,13 +17,13 @@ export class MainView extends React.Component {
       movies: null,
       selectedMovie: null,
       loadingMessage: "aa",
-      user: null
+      user: null,
+      isRegistration: false
     };
   }
 
   componentDidMount() {
-
-    this.setState({loadingMessage: "Loading..."});
+    this.setState({ loadingMessage: "Loading..." });
     axios
       .get("https://my-flix-gerinfact.herokuapp.com/movies")
       .then(res => this.setState({ movies: res.data }))
@@ -40,17 +42,53 @@ export class MainView extends React.Component {
   }
 
   onLoggedIn(user) {
-    this.setState({user: user});
+    this.setState({ user: user });
+  }
+
+  onRegistered(user) {
+    this.setState({ user: user });
+  }
+
+  onRegister() {
+    this.setState({ isRegistration: true });
+  }
+  onRegisterReturn() {
+    this.setState({ isRegistration: false });
   }
 
   render() {
     const { movies, selectedMovie, user } = this.state;
 
-    if(!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    if (!user)
+      return this.state.isRegistration ? (
+        <div className="registration">
+          <RegistrationView onRegistered={user => this.onRegistered(user)} />
+          <Button
+            className="action-button"
+            variant="primary"
+            type="button"
+            onClick={() => this.onRegisterReturn()}
+          >
+            Return
+          </Button>
+        </div>
+      ) : (
+        <div className="login">
+          <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+          <Button
+            className="action-button"
+            variant="primary"
+            type="button"
+            onClick={() => this.onRegister()}
+          >
+            Register
+          </Button>
+        </div>
+      );
 
     return movies && movies.length ? (
       <div className="main-view">
-      <h1 className="title">Movies</h1>
+        <h1 className="title">Movies</h1>
         {selectedMovie ? (
           <MovieView
             movie={selectedMovie}

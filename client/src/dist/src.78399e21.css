@@ -5,6 +5,7 @@
   text-shadow: 0 1px 0 #fff;
   opacity: 0.5;
   font-weight: 700;
+  margin-top: 5px;
 }
 
 .submit:hover, .submit:focus {
@@ -78,6 +79,23 @@
   grid-column: 1/-1;
   text-align: center;
   font-size: 45px;
+}
+
+.action-button {
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  color: #170a19;
+  background-color: #e4f2f0;
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+.action-button:hover, .action-button:focus {
+  color: #170a19;
+  background-color: #e4f2f0;
+  text-decoration: underline;
+  box-shadow: none;
 }
 body {
   background-color: #e4f2f0;
