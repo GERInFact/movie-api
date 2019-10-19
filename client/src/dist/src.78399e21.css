@@ -30,6 +30,7 @@
   transition: all 0.3s;
 }
 .movie-card img {
+  margin-bottom: 5px;
   width: 100%;
 }
 
