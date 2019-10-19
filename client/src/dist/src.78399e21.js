@@ -36045,7 +36045,7 @@ function LoginView(props) {
   }, "Login"));
 }
 
-LoginView.protoTypes = {
+LoginView.propTypes = {
   onLoggedIn: _propTypes.default.func.isRequired
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
@@ -36138,7 +36138,7 @@ function RegistrationView(props) {
   }, "Submit"));
 }
 
-RegistrationView.protoTypes = {
+RegistrationView.propTypes = {
   onRegistered: _propTypes.default.func.isRequired
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
@@ -36212,7 +36212,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.MovieCard = MovieCard;
-MovieCard.protoTypes = {
+MovieCard.propTypes = {
   movie: _propTypes.default.shape({
     Title: _propTypes.default.string,
     Description: _propTypes.default.string.isRequired,
@@ -36329,7 +36329,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.MovieView = MovieView;
-MovieView.protoTypes = {
+MovieView.propTypes = {
   movie: _propTypes.default.shape({
     Title: _propTypes.default.string,
     Description: _propTypes.default.string.isRequired,
