@@ -35990,6 +35990,8 @@ var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
+var _axios = _interopRequireDefault(require("axios"));
+
 require("./login-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -36019,8 +36021,17 @@ function LoginView(props) {
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    console.log(username, password);
-    props.onLoggedIn(username);
+
+    _axios.default.post("https://my-flix-gerinfact.herokuapp.com/login", {
+      username: username,
+      password: password
+    }).then(function (res) {
+      var data = res.data;
+      console.log(data);
+      props.onLoggedIn(data);
+    }).catch(function (err) {
+      return console.log(err.message);
+    });
   };
 
   return _react.default.createElement(_Form.default, null, _react.default.createElement(_Form.default.Group, {
@@ -36048,7 +36059,7 @@ function LoginView(props) {
 LoginView.propTypes = {
   onLoggedIn: _propTypes.default.func.isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);

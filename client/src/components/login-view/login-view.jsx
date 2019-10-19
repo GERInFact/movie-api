@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 import "./login-view.scss";
 
@@ -11,8 +12,17 @@ export function LoginView(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(username, password);
-    props.onLoggedIn(username);
+    axios
+      .post("https://my-flix-gerinfact.herokuapp.com/login", {
+        username: username,
+        password: password
+      })
+      .then(res => {
+        const data = res.data;
+        console.log(data);
+        props.onLoggedIn(data);
+      })
+      .catch(err => console.log(err.message));
   };
 
   return (
@@ -29,7 +39,12 @@ export function LoginView(props) {
           onChange={e => setPassword(e.target.value)}
         />
       </Form.Group>
-      <Button className="submit" variant="primary" type="button" onClick={handleSubmit}>
+      <Button
+        className="submit"
+        variant="primary"
+        type="button"
+        onClick={handleSubmit}
+      >
         Login
       </Button>
     </Form>

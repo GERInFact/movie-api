@@ -28,11 +28,11 @@ mongoose
 
 const app = express();
 // middleware functions
+app.use(cors());
 app.use(bodyParser.json());
 
 const auth = require("./auth")(app);
 
-app.use(cors());
 app.use(morgan("common"));
 app.use(express.static("public"));
 app.use((err, req, res, next) => {
