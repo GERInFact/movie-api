@@ -36503,6 +36503,13 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "onLogout",
+    value: function onLogout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      location.reload();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;

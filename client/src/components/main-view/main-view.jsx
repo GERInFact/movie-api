@@ -69,6 +69,11 @@ export class MainView extends React.Component {
   onRegisterReturn() {
     this.setState({ isRegistration: false });
   }
+  onLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    location.reload();
+  }
 
   render() {
     const { movies, selectedMovie, user } = this.state;
@@ -76,7 +81,7 @@ export class MainView extends React.Component {
     if (!user)
       return this.state.isRegistration ? (
         <div className="registration">
-          <RegistrationView onRegistered={user => this.onRegistered(user)} />
+           <RegistrationView onRegistered={user => this.onRegistered(user)} />
           <Button
             className="action-button"
             variant="primary"
@@ -109,6 +114,7 @@ export class MainView extends React.Component {
             onClose={() => this.onMovieClose()}
           />
         ) : (
+          
           movies.map(m => (
             <MovieCard
               movie={m}
