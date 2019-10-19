@@ -36424,14 +36424,21 @@ function (_React$Component) {
 
   _createClass(MainView, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
+    value: function componentDidMount() {}
+  }, {
+    key: "getMovies",
+    value: function getMovies(token) {
       var _this2 = this;
 
       this.setState({
         loadingMessage: "Loading..."
       });
 
-      _axios.default.get("https://my-flix-gerinfact.herokuapp.com/movies").then(function (res) {
+      _axios.default.get("https://my-flix-gerinfact.herokuapp.com/movies", {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (res) {
         return _this2.setState({
           movies: res.data
         });
@@ -36443,9 +36450,6 @@ function (_React$Component) {
         console.log(err.message);
       });
     }
-  }, {
-    key: "getMovies",
-    value: function getMovies(token) {}
   }, {
     key: "onMovieClick",
     value: function onMovieClick(movie) {

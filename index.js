@@ -47,16 +47,20 @@ app.get("/", (req, res) => {
 });
 
 // send all movies
-app.get("/movies", async (req, res) => {
-  try {
-    const movies = await Movies.find();
-    if (!movies.length) return res.status(400).send("No movies yet");
+app.get(
+  "/movies",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const movies = await Movies.find();
+      if (!movies.length) return res.status(400).send("No movies yet");
 
-    res.json(movies);
-  } catch (err) {
-    res.status(500).send(err.message);
+      res.json(movies);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
-});
+);
 
 // send featured movies
 app.get(
