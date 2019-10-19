@@ -22,7 +22,13 @@ export class MainView extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const accessToken = localStorage.getItem("token");
+    if (!accessToken) return;
+
+    this.setState({ user: localStorage.getItem("user") });
+    this.getMovies(accessToken);
+  }
 
   getMovies(token) {
     this.setState({ loadingMessage: "Loading..." });

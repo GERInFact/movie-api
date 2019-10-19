@@ -36424,7 +36424,14 @@ function (_React$Component) {
 
   _createClass(MainView, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      var accessToken = localStorage.getItem("token");
+      if (!accessToken) return;
+      this.setState({
+        user: localStorage.getItem("user")
+      });
+      this.getMovies(accessToken);
+    }
   }, {
     key: "getMovies",
     value: function getMovies(token) {
