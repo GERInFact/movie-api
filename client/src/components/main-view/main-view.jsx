@@ -33,6 +33,8 @@ export class MainView extends React.Component {
       });
   }
 
+  getMovies(token) {}
+
   onMovieClick(movie) {
     this.setState({ selectedMovie: movie });
   }
@@ -41,8 +43,12 @@ export class MainView extends React.Component {
     this.setState({ selectedMovie: null });
   }
 
-  onLoggedIn(user) {
-    this.setState({ user: user });
+  onLoggedIn(authData) {
+    this.setState({ user: authData.user.Username });
+
+    localStorage.setItem("token", authData.token);
+    localStorage.setItem("user", authData.user.Username);
+    this.getMovies(authData.token);
   }
 
   onRegistered(user) {
