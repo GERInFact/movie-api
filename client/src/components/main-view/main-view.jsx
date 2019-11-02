@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
@@ -16,7 +18,7 @@ export class MainView extends React.Component {
     this.state = {
       movies: null,
       selectedMovie: null,
-      loadingMessage: "aa",
+      loadingMessage: "",
       user: null,
       isRegistration: false
     };
@@ -63,7 +65,9 @@ export class MainView extends React.Component {
     console.log(user);
     axios
       .post("https://my-flix-gerinfact.herokuapp.com/users", user)
-      .then(res => this.setState({ user: res.data }))
+      .then(res =>
+        console.log(`${res.data.Username} has successfully been registered.`)
+      )
       .catch(err => console.log(err.message));
   }
 
@@ -110,23 +114,23 @@ export class MainView extends React.Component {
       );
 
     return movies && movies.length ? (
-      <div className="main-view">
-        <h1 className="title">Movies</h1>
-        {selectedMovie ? (
-          <MovieView
-            movie={selectedMovie}
-            onClose={() => this.onMovieClose()}
+      <Router>
+        <div className="main-view">
+          <Route
+            exact
+            path="/"
+            render={() => movies.map(m => <MovieCard key={m._id} movie={m} />)}
           />
-        ) : (
-          movies.map(m => (
-            <MovieCard
-              movie={m}
-              key={m._id}
-              onClick={m => this.onMovieClick(m)}
-            />
-          ))
-        )}
-      </div>
+          <Route
+            path="/movies/:title"
+            render={({ match }) => (
+              <MovieView
+                movie={movies.find(m => m.Title === match.params.title)}
+              />
+            )}
+          />
+        </div>
+      </Router>
     ) : (
       <div className="main-view">
         <h2>{this.state.loadingMessage}</h2>
