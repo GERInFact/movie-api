@@ -139,6 +139,7 @@
   grid-column: 1/-1;
   text-align: center;
   font-size: 45px;
+  opacity: 0.8;
 }
 
 .action-button {
@@ -156,6 +157,63 @@
   background-color: #e4f2f0;
   text-decoration: underline;
   box-shadow: none;
+}
+.profile-view {
+  grid-column: 1/-1;
+  font-size: 25px;
+  display: flex;
+  flex-flow: column wrap;
+  color: #170a19;
+}
+.profile-view .label {
+  font-size: 30px;
+  opacity: 0.6;
+}
+.profile-view .value {
+  padding: 0 10px;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  background-color: rgba(153, 216, 208, 0.3);
+  font-family: sans-serif;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+.profile-view .value:focus {
+  border: 2px solid #70416d;
+}
+.profile-view .profile-close {
+  position: relative;
+}
+.profile-view .profile-close .close {
+  margin: 0 5px;
+  text-decoration: none;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  color: #170a19;
+  background-color: #99d8d0;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.3);
+}
+.profile-view .profile-close .close:hover,
+.profile-view .profile-close .close:focus {
+  cursor: pointer;
+  box-shadow: 0 0 5px 3px #70416d;
+}
+.profile-view .profile-close #delete-user,
+.profile-view .profile-close #save-user {
+  float: left;
+}
+.profile-view .info {
+  font-style: italic;
+  color: orange;
+}
+.profile-view .favorite-movie-container {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 10px;
 }
 body {
   background-color: #e4f2f0;

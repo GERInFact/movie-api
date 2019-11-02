@@ -10,8 +10,10 @@ import { MovieView } from "../movie-view/movie-view";
 import { GenreView } from "../genre-view/genre-view";
 import { DirectorView } from "../director-view/director-view";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 import "./main-view.scss";
+import { ProfileView } from "../profile-view/profile-view";
 
 export class MainView extends React.Component {
   constructor() {
@@ -48,7 +50,8 @@ export class MainView extends React.Component {
   }
 
   onMovieClick(movie) {
-    this.setState({selectedMovie: movie});
+    console.log(movie);
+    this.setState({ selectedMovie: movie });
   }
 
   onMovieClose() {
@@ -67,9 +70,10 @@ export class MainView extends React.Component {
     console.log(user);
     axios
       .post("https://my-flix-gerinfact.herokuapp.com/users", user)
-      .then(res =>
-        console.log(`${res.data.Username} has successfully been registered.`)
-      )
+      .then(res => {
+        console.log(`${res.data.Username} has successfully been registered.`);
+        location.reload();
+      })
       .catch(err => console.log(err.message));
   }
 
@@ -117,19 +121,30 @@ export class MainView extends React.Component {
 
     return movies && movies.length ? (
       <Router>
+          <Link to={`/users/${user}`}>
+            <h2>{user}</h2>
+          </Link>
         <div className="main-view">
           <h1 className="title">myFlix</h1>
           <Route
             exact
             path="/"
-            render={() => movies.map(m => <MovieCard key={m._id} movie={m} onMovieClick={() => this.onMovieClick(m)}/>)}
+            render={() =>
+              movies.map(m => (
+                <MovieCard
+                  key={m._id}
+                  movie={m}
+                  onMovieClick={() => this.onMovieClick(m)}
+                />
+              ))
+            }
           />
           <Route
             path="/movies/:title"
             render={({ match }) => (
               <MovieView
                 movie={movies.find(m => m.Title === match.params.title)}
-                previousMovie = {selectedMovie}
+                previousMovie={selectedMovie}
               />
             )}
           />
@@ -139,9 +154,10 @@ export class MainView extends React.Component {
               return (
                 <DirectorView
                   director={
-                    movies.find(m => m.Director.Name === match.params.name).Director
+                    movies.find(m => m.Director.Name === match.params.name)
+                      .Director
                   }
-                  previousMovie = {selectedMovie}
+                  previousMovie={selectedMovie}
                 />
               );
             }}
@@ -154,7 +170,19 @@ export class MainView extends React.Component {
                   genre={
                     movies.find(m => m.Genre.Name === match.params.name).Genre
                   }
-                  previousMovie = {selectedMovie}
+                  previousMovie={selectedMovie}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/users/:username"
+            render={({ match }) => {
+              return (
+                <ProfileView
+                  movies={movies}
+                  user={user}
+                  onMovieClick={m => this.onMovieClick(m)}
                 />
               );
             }}
