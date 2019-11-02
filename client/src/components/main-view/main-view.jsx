@@ -60,7 +60,11 @@ export class MainView extends React.Component {
   }
 
   onRegistered(user) {
-    this.setState({ user: user });
+    console.log(user);
+    axios
+      .post("https://my-flix-gerinfact.herokuapp.com/users", user)
+      .then(res => this.setState({ user: res.data }))
+      .catch(err => console.log(err.message));
   }
 
   onRegister() {
@@ -81,7 +85,7 @@ export class MainView extends React.Component {
     if (!user)
       return this.state.isRegistration ? (
         <div className="registration">
-           <RegistrationView onRegistered={user => this.onRegistered(user)} />
+          <RegistrationView onRegistered={user => this.onRegistered(user)} />
           <Button
             className="action-button"
             variant="primary"
@@ -114,7 +118,6 @@ export class MainView extends React.Component {
             onClose={() => this.onMovieClose()}
           />
         ) : (
-          
           movies.map(m => (
             <MovieCard
               movie={m}

@@ -36115,7 +36115,11 @@ function RegistrationView(props) {
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     console.log(username, password);
-    props.onRegistered(username);
+    props.onRegistered({
+      username: username,
+      password: password,
+      email: email
+    });
   };
 
   return _react.default.createElement(_Form.default, null, _react.default.createElement(_Form.default.Group, {
@@ -36484,8 +36488,16 @@ function (_React$Component) {
   }, {
     key: "onRegistered",
     value: function onRegistered(user) {
-      this.setState({
-        user: user
+      var _this3 = this;
+
+      console.log(user);
+
+      _axios.default.post("https://my-flix-gerinfact.herokuapp.com/users", user).then(function (res) {
+        return _this3.setState({
+          user: res.data
+        });
+      }).catch(function (err) {
+        return console.log(err.message);
       });
     }
   }, {
@@ -36512,7 +36524,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var _this$state = this.state,
           movies = _this$state.movies,
@@ -36522,27 +36534,27 @@ function (_React$Component) {
         className: "registration"
       }, _react.default.createElement(_registrationView.RegistrationView, {
         onRegistered: function onRegistered(user) {
-          return _this3.onRegistered(user);
+          return _this4.onRegistered(user);
         }
       }), _react.default.createElement(_Button.default, {
         className: "action-button",
         variant: "primary",
         type: "button",
         onClick: function onClick() {
-          return _this3.onRegisterReturn();
+          return _this4.onRegisterReturn();
         }
       }, "Return")) : _react.default.createElement("div", {
         className: "login"
       }, _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
-          return _this3.onLoggedIn(user);
+          return _this4.onLoggedIn(user);
         }
       }), _react.default.createElement(_Button.default, {
         className: "action-button",
         variant: "primary",
         type: "button",
         onClick: function onClick() {
-          return _this3.onRegister();
+          return _this4.onRegister();
         }
       }, "Register"));
       return movies && movies.length ? _react.default.createElement("div", {
@@ -36552,14 +36564,14 @@ function (_React$Component) {
       }, "Movies"), selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
         onClose: function onClose() {
-          return _this3.onMovieClose();
+          return _this4.onMovieClose();
         }
       }) : movies.map(function (m) {
         return _react.default.createElement(_movieCard.MovieCard, {
           movie: m,
           key: m._id,
           onClick: function onClick(m) {
-            return _this3.onMovieClick(m);
+            return _this4.onMovieClick(m);
           }
         });
       })) : _react.default.createElement("div", {
@@ -36660,7 +36672,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58139" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58438" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -36691,8 +36703,9 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
         assetsToAccept.forEach(function (v) {
           hmrAcceptRun(v[0], v[1]);
         });
-      } else {
-        window.location.reload();
+      } else if (location.reload) {
+        // `location` global exists in a web worker context but lacks `.reload()` function.
+        location.reload();
       }
     }
 
