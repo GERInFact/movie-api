@@ -9,10 +9,10 @@ export class MovieCard extends React.Component {
     super(props);
   }
   render() {
-    const { movie } = this.props;
+    const { movie, onMovieClick } = this.props;
 
     return (
-      <div className="movie-card">
+      <div className="movie-card" onClick={onMovieClick}>
         <Link to={`/movies/${movie.Title}`}>
           <img src={movie.ImageUrl} />
           <h2>{movie.Title}</h2>

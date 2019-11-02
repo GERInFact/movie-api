@@ -8,6 +8,7 @@ import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { GenreView } from "../genre-view/genre-view";
+import { DirectorView } from "../director-view/director-view";
 import Button from "react-bootstrap/Button";
 
 import "./main-view.scss";
@@ -18,6 +19,7 @@ export class MainView extends React.Component {
 
     this.state = {
       movies: null,
+      selectedMovie: null,
       loadingMessage: "",
       user: null,
       isRegistration: false
@@ -43,6 +45,10 @@ export class MainView extends React.Component {
         this.setState({ loadingMessage: "Connection Error: No movies found." });
         console.log(err.message);
       });
+  }
+
+  onMovieClick(movie) {
+    this.setState({selectedMovie: movie});
   }
 
   onMovieClose() {
@@ -116,13 +122,14 @@ export class MainView extends React.Component {
           <Route
             exact
             path="/"
-            render={() => movies.map(m => <MovieCard key={m._id} movie={m}/>)}
+            render={() => movies.map(m => <MovieCard key={m._id} movie={m} onMovieClick={() => this.onMovieClick(m)}/>)}
           />
           <Route
             path="/movies/:title"
             render={({ match }) => (
               <MovieView
                 movie={movies.find(m => m.Title === match.params.title)}
+                previousMovie = {selectedMovie}
               />
             )}
           />
@@ -132,9 +139,9 @@ export class MainView extends React.Component {
               return (
                 <DirectorView
                   director={
-                    movies.find(m => m.Director.Name === match.params.name)
-                      .Director
+                    movies.find(m => m.Director.Name === match.params.name).Director
                   }
+                  previousMovie = {selectedMovie}
                 />
               );
             }}
@@ -144,9 +151,10 @@ export class MainView extends React.Component {
             render={({ match }) => {
               return (
                 <GenreView
-                  movie={
-                    movies.find(m => m.Genre.Name === match.params.name)
+                  genre={
+                    movies.find(m => m.Genre.Name === match.params.name).Genre
                   }
+                  previousMovie = {selectedMovie}
                 />
               );
             }}

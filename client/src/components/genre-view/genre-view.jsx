@@ -11,32 +11,36 @@ export class GenreView extends React.Component {
   }
 
   render() {
-    const { movie } = this.props;
-    if (!movie || !movie.Genre) return null;
+    const { genre, previousMovie } = this.props;
+    if (!genre) return null;
+    console.log(previousMovie);
 
     return (
       <div className="genre-view">
         {/* Title */}
         <div className="genre-name">
           <div className="label">Name</div>
-          <div className="value">{movie.Genre.Name}</div>
+          <div className="value">{genre.Name}</div>
         </div>
         {/* Title End */}
 
         {/* Description */}
         <div className="genre-description">
           <div className="label">Description</div>
-          <div className="value">{movie.Genre.Description}</div>
+          <div className="value">{genre.Description}</div>
         </div>
         {/* Description End */}
 
-
         {/* Close View */}
         <div className="genre-close">
-          <Link to={`/movies/${movie.Title}`}>
-            <button className="close">
-              Return
-            </button>
+          <Link
+            to={
+              previousMovie && previousMovie.Title
+                ? `/movies/${previousMovie.Title}`
+                : "/"
+            }
+          >
+            <button className="close">Return</button>
           </Link>
         </div>
         {/* Close View End */}
@@ -46,10 +50,8 @@ export class GenreView extends React.Component {
 }
 
 GenreView.propTypes = {
-  movie: PropTypes.shape({
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired,
+  genre: PropTypes.shape({
+    Name: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired
+  }).isRequired
 };
