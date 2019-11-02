@@ -39708,6 +39708,21 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "onRemoveMovie",
+    value: function onRemoveMovie(movieId) {
+      var accessToken = localStorage.getItem("token");
+
+      _axios.default.delete("https://my-flix-gerinfact.herokuapp.com/users/".concat(this.props.user, "/movies/").concat(movieId), {
+        headers: {
+          Authorization: "Bearer ".concat(accessToken)
+        }
+      }).then(function (res) {
+        console.log(res.data);
+      }).catch(function (err) {
+        console.log(err.message);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -39813,13 +39828,19 @@ function (_React$Component) {
         var movie = movies.find(function (m) {
           return id === m._id;
         });
-        return _react.default.createElement(_movieCard.MovieCard, {
-          key: id,
+        return _react.default.createElement("div", {
+          key: id
+        }, _react.default.createElement("button", {
+          className: "remove",
+          onClick: function onClick() {
+            return _this3.onRemoveMovie(id);
+          }
+        }, "Remove"), _react.default.createElement(_movieCard.MovieCard, {
           movie: movie,
           onMovieClick: function onMovieClick() {
             return _onMovieClick(movie);
           }
-        });
+        }));
       }) : _react.default.createElement("div", null, "No movies yet.")));
     }
   }]);

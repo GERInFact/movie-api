@@ -40,9 +40,9 @@ export class ProfileView extends React.Component {
           }
         }
       )
-      .then(res =>{
+      .then(res => {
         localStorage.clear();
-        window.location ="/";
+        window.location = "/";
         console.log(res.data);
       })
       .catch(err => {
@@ -74,6 +74,25 @@ export class ProfileView extends React.Component {
       });
   }
 
+  onRemoveMovie(movieId) {
+    const accessToken = localStorage.getItem("token");
+    axios
+      .delete(
+        `https://my-flix-gerinfact.herokuapp.com/users/${this.props.user}/movies/${movieId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        }
+      )
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  }
+
   render() {
     const { movies, onMovieClick } = this.props;
     const { userData, password, passwordConfirmed, birth, email } = this.state;
@@ -93,7 +112,11 @@ export class ProfileView extends React.Component {
           >
             Save
           </button>
-          <button className="close" id="delete-user" onClick={() => this.onUserDelete()}>
+          <button
+            className="close"
+            id="delete-user"
+            onClick={() => this.onUserDelete()}
+          >
             Delete
           </button>
         </div>
@@ -171,11 +194,13 @@ export class ProfileView extends React.Component {
             userData.FavoriteMovies.map(id => {
               const movie = movies.find(m => id === m._id);
               return (
-                <MovieCard
-                  key={id}
-                  movie={movie}
-                  onMovieClick={() => onMovieClick(movie)}
-                />
+                <div  key={id}>
+                  <button className="remove" onClick={ () => this.onRemoveMovie(id)}>Remove</button>
+                  <MovieCard
+                    movie={movie}
+                    onMovieClick={() => onMovieClick(movie)}
+                  />
+                </div>
               );
             })
           ) : (
