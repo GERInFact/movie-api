@@ -1,0 +1,35 @@
+$card-glow: #70416d;
+$card-color: #99d8d0;
+$card-text: #170a19;
+
+.genre-view {
+  grid-column: 1/-1;
+  font-size: 25px;
+  display: flex;
+  flex-flow: column wrap;
+  color: $card-text;
+  .label {
+      font-size: 30px;
+  }
+  .value {
+      font-family: sans-serif;
+      margin-bottom: 10px;
+      text-align: justify;
+  }
+  .genre-close {
+      .close {
+          text-decoration: none;
+          border: 0;
+          border-radius: 5px;
+          padding: 10px;
+          font-size: 20px;
+          color: $card-text;
+          background-color: $card-color;
+          border-bottom: 5px solid rgba(0,0,0,.3);
+      }
+      .close:hover, .close:focus {
+          cursor: pointer;
+          box-shadow: 0 0 5px 3px $card-glow;
+      }
+  }
+}

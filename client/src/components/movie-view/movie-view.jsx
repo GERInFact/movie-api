@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./movie-view.scss";
 
+import { Link } from "react-router-dom";
+
 export class MovieView extends React.Component {
   constructor(props) {
     super(props);
@@ -9,7 +11,7 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie, onClose } = this.props;
+    const { movie } = this.props;
     if (!movie) return null;
 
     return (
@@ -34,24 +36,31 @@ export class MovieView extends React.Component {
 
         {/* Genre */}
         <div className="movie-genre">
-          <div className="label">Genre</div>
-          <div className="value">{movie.Genre.Name}</div>
+          <Link to={`/genre/${movie.Genre.Name}`}>
+            <div className="label">Genre</div>
+            <div className="value">{movie.Genre.Name}</div>
+          </Link>
         </div>
         {/* Genre End */}
 
         {/* Director */}
         <div className="movie-director">
-          <div className="label">Director</div>
-          <div className="value">{movie.Director.Name}</div>
+          <Link to={`/directors/${movie.Director.Name}`}>
+            <div className="label">Director</div>
+            <div className="value">{movie.Director.Name}</div>
+          </Link>
         </div>
         {/* Director End */}
 
         {/* Close View */}
         <div className="movie-close">
-          <button className="close" onClick={() => onClose()}>Return</button>
+          <Link to={`/`}>
+            <button className="close">
+              Return
+            </button>
+          </Link>
         </div>
         {/* Close View End */}
-        
       </div>
     );
   }
@@ -67,5 +76,4 @@ MovieView.propTypes = {
       Description: PropTypes.string.isRequired
     }).isRequired
   }).isRequired,
-  onClose: PropTypes.func.isRequired
 };

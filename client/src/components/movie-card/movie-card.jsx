@@ -9,10 +9,10 @@ export class MovieCard extends React.Component {
     super(props);
   }
   render() {
-    const { movie, onClick } = this.props;
+    const { movie } = this.props;
 
     return (
-      <div onClick={() => onClick(movie)} className="movie-card">
+      <div className="movie-card">
         <Link to={`/movies/${movie.Title}`}>
           <img src={movie.ImageUrl} />
           <h2>{movie.Title}</h2>
@@ -34,5 +34,4 @@ MovieCard.propTypes = {
       Description: PropTypes.string.isRequired
     }).isRequired
   }).isRequired,
-  onClick: PropTypes.func.isRequired
 };

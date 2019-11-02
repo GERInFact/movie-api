@@ -7,6 +7,7 @@ import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { GenreView } from "../genre-view/genre-view";
 import Button from "react-bootstrap/Button";
 
 import "./main-view.scss";
@@ -17,7 +18,6 @@ export class MainView extends React.Component {
 
     this.state = {
       movies: null,
-      selectedMovie: null,
       loadingMessage: "",
       user: null,
       isRegistration: false
@@ -43,10 +43,6 @@ export class MainView extends React.Component {
         this.setState({ loadingMessage: "Connection Error: No movies found." });
         console.log(err.message);
       });
-  }
-
-  onMovieClick(movie) {
-    this.setState({ selectedMovie: movie });
   }
 
   onMovieClose() {
@@ -116,10 +112,11 @@ export class MainView extends React.Component {
     return movies && movies.length ? (
       <Router>
         <div className="main-view">
+          <h1 className="title">myFlix</h1>
           <Route
             exact
             path="/"
-            render={() => movies.map(m => <MovieCard key={m._id} movie={m} />)}
+            render={() => movies.map(m => <MovieCard key={m._id} movie={m}/>)}
           />
           <Route
             path="/movies/:title"
@@ -142,14 +139,13 @@ export class MainView extends React.Component {
               );
             }}
           />
-            <Route
+          <Route
             path="/genre/:name"
             render={({ match }) => {
               return (
-                <DirectorView
-                  director={
+                <GenreView
+                  movie={
                     movies.find(m => m.Genre.Name === match.params.name)
-                      .Genre
                   }
                 />
               );

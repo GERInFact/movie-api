@@ -72,6 +72,35 @@
   cursor: pointer;
   box-shadow: 0 0 5px 3px #70416d;
 }
+.genre-view {
+  grid-column: 1/-1;
+  font-size: 25px;
+  display: flex;
+  flex-flow: column wrap;
+  color: #170a19;
+}
+.genre-view .label {
+  font-size: 30px;
+}
+.genre-view .value {
+  font-family: sans-serif;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+.genre-view .genre-close .close {
+  text-decoration: none;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  color: #170a19;
+  background-color: #99d8d0;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.3);
+}
+.genre-view .genre-close .close:hover, .genre-view .genre-close .close:focus {
+  cursor: pointer;
+  box-shadow: 0 0 5px 3px #70416d;
+}
 .main-view {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
