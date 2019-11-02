@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./movie-card.scss";
 
+import { Link } from "react-router-dom";
+
 export class MovieCard extends React.Component {
   constructor(props) {
     super(props);
@@ -11,14 +13,15 @@ export class MovieCard extends React.Component {
 
     return (
       <div onClick={() => onClick(movie)} className="movie-card">
-        <img src={movie.ImageUrl}/>
-        <h2>{movie.Title}</h2>
-        <p> by {movie.Director.Name}</p>
-        <h3>{movie.Description.slice(0,30)}...</h3>
+        <Link to={`/movies/${movie.Title}`}>
+          <img src={movie.ImageUrl} />
+          <h2>{movie.Title}</h2>
+          <p> by {movie.Director.Name}</p>
+          <h3>{movie.Description.slice(0, 30)}...</h3>
+        </Link>
       </div>
     );
   }
-
 }
 
 MovieCard.propTypes = {

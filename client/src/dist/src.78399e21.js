@@ -39186,6 +39186,8 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 require("./movie-card.scss");
 
+var _reactRouterDom = require("react-router-dom");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -39228,9 +39230,11 @@ function (_React$Component) {
           return _onClick(movie);
         },
         className: "movie-card"
+      }, _react.default.createElement(_reactRouterDom.Link, {
+        to: "/movies/".concat(movie.Title)
       }, _react.default.createElement("img", {
         src: movie.ImageUrl
-      }), _react.default.createElement("h2", null, movie.Title), _react.default.createElement("p", null, " by ", movie.Director.Name), _react.default.createElement("h3", null, movie.Description.slice(0, 30), "..."));
+      }), _react.default.createElement("h2", null, movie.Title), _react.default.createElement("p", null, " by ", movie.Director.Name), _react.default.createElement("h3", null, movie.Description.slice(0, 30), "...")));
     }
   }]);
 
@@ -39250,7 +39254,7 @@ MovieCard.propTypes = {
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -39587,6 +39591,26 @@ function (_React$Component) {
             movie: movies.find(function (m) {
               return m.Title === match.params.title;
             })
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/directors/:name",
+        render: function render(_ref2) {
+          var match = _ref2.match;
+          return _react.default.createElement(DirectorView, {
+            director: movies.find(function (m) {
+              return m.Director.Name === match.params.name;
+            }).Director
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/genre/:name",
+        render: function render(_ref3) {
+          var match = _ref3.match;
+          return _react.default.createElement(DirectorView, {
+            director: movies.find(function (m) {
+              return m.Genre.Name === match.params.name;
+            }).Genre
           });
         }
       }))) : _react.default.createElement("div", {

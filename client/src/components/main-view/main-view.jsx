@@ -129,6 +129,32 @@ export class MainView extends React.Component {
               />
             )}
           />
+          <Route
+            path="/directors/:name"
+            render={({ match }) => {
+              return (
+                <DirectorView
+                  director={
+                    movies.find(m => m.Director.Name === match.params.name)
+                      .Director
+                  }
+                />
+              );
+            }}
+          />
+            <Route
+            path="/genre/:name"
+            render={({ match }) => {
+              return (
+                <DirectorView
+                  director={
+                    movies.find(m => m.Genre.Name === match.params.name)
+                      .Genre
+                  }
+                />
+              );
+            }}
+          />
         </div>
       </Router>
     ) : (
