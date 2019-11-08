@@ -37,7 +37,7 @@ const auth = require("./auth")(app);
 
 app.use(morgan("common"));
 app.use(express.static("public"));
-app.use('/client', express.static(path.join(__dirname, 'dist')));
+app.use('/client', express.static(path.join(__dirname, 'client/dist')));
 app.use((err, req, res, next) => {
   console.log(err.stack);
   res.status(500).send("Something went wrong");
