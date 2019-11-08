@@ -3,12 +3,14 @@ $card-glow: #70416d;
 $card-color: #99d8d0;
 $card-text: #170a19;
 
+.user-profile-link {
+  display: inline-block;
+}
 .main-view {
   .title {
-    display: inline-block;
     text-align: center;
     font-size: 45px;
-    opacity: .8;
+    opacity: 0.8;
   }
 }
 
@@ -19,13 +21,12 @@ $card-text: #170a19;
   color: $card-text;
   background-color: $page-color;
   font-size: 10px;
-  opacity: .5;
+  opacity: 0.5;
 }
-.action-button:hover, .action-button:focus {
+.action-button:hover,
+.action-button:focus {
   color: $card-text;
   background-color: $page-color;
   text-decoration: underline;
   box-shadow: none;
 }
-
-

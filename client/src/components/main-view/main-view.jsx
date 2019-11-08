@@ -107,7 +107,7 @@ export class MainView extends React.Component {
     return movies && movies.length ? (
       <Router basename="/client">
         <Link to={`/users/${user}`}>
-          <h2>{user}</h2>
+          <h2 className="user-profile-link">{user}</h2>
         </Link>
         <div className="main-view">
           <h1 className="title">myFlix</h1>
