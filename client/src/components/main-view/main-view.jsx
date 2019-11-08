@@ -1,7 +1,13 @@
 import React from "react";
 import axios from "axios";
 
+import { connect } from "react-redux";
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import { setMovies } from "../../actions/actions";
+
+import MoviesList from "../movies-list/movies-list";
 
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
@@ -20,7 +26,6 @@ export class MainView extends React.Component {
     super();
 
     this.state = {
-      movies: null,
       selectedMovie: null,
       loadingMessage: "",
       user: null,
@@ -42,7 +47,7 @@ export class MainView extends React.Component {
       .get("https://my-flix-gerinfact.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(res => this.setState({ movies: res.data }))
+      .then(res => this.props.setMovies(res.data))
       .catch(err => {
         this.setState({ loadingMessage: "Connection Error: No movies found." });
         console.log(err.message);
@@ -90,40 +95,20 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, selectedMovie, user } = this.state;
+    const { selectedMovie, user } = this.state;
+    const { movies } = this.props;
 
-    if (!user)
-      return this.state.isRegistration ? (
-        <div className="registration">
-          <RegistrationView onRegistered={user => this.onRegistered(user)} />
-          <Button
-            className="action-button"
-            variant="primary"
-            type="button"
-            onClick={() => this.onRegisterReturn()}
-          >
-            Return
-          </Button>
-        </div>
-      ) : (
-        <div className="login">
-          <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-          <Button
-            className="action-button"
-            variant="primary"
-            type="button"
-            onClick={() => this.onRegister()}
-          >
-            Register
-          </Button>
-        </div>
-      );
+    if (!user) return this.getCredentialsView();
 
+    return this.getMainView(movies, user, selectedMovie);
+  }
+
+  getMainView(movies, user, selectedMovie) {
     return movies && movies.length ? (
       <Router>
-          <Link to={`/users/${user}`}>
-            <h2>{user}</h2>
-          </Link>
+        <Link to={`/users/${user}`}>
+          <h2>{user}</h2>
+        </Link>
         <div className="main-view">
           <h1 className="title">myFlix</h1>
           <Route
@@ -195,4 +180,41 @@ export class MainView extends React.Component {
       </div>
     );
   }
+
+  getCredentialsView() {
+    return this.state.isRegistration ? (
+      <div className="registration">
+        <RegistrationView onRegistered={user => this.onRegistered(user)} />
+        <Button
+          className="action-button"
+          variant="primary"
+          type="button"
+          onClick={() => this.onRegisterReturn()}
+        >
+          Return
+        </Button>
+      </div>
+    ) : (
+      <div className="login">
+        <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+        <Button
+          className="action-button"
+          variant="primary"
+          type="button"
+          onClick={() => this.onRegister()}
+        >
+          Register
+        </Button>
+      </div>
+    );
+  }
 }
+
+const mapStateToProps = state => {
+  return { movies: state.movies };
+};
+
+export default connect(
+  mapStateToProps,
+  { setMovies }
+)(MainView);

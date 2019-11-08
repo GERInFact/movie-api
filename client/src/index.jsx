@@ -3,7 +3,7 @@ import ReactDom from "react-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-import { MainView } from "./components/main-view/main-view";
+import MainView from "./components/main-view/main-view";
 import moviesApp from "./reducers/reducers";
 
 import "./index.scss";
