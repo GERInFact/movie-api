@@ -51,7 +51,9 @@ export class ProfileView extends React.Component {
   }
   onSaveUser() {
     const accessToken = localStorage.getItem("token");
-    const { userData } = this.state;
+    const { password, passwordConfirmed, userData } = this.state;
+
+    if(password !== passwordConfirmed) return;
 
     axios
       .put(
