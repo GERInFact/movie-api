@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import "./sort-filter-doopdwn.scss";
+import "./sort-filter-dropdown.scss";
 
 // get bootstrap imports
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';

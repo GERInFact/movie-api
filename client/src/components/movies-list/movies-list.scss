@@ -11,6 +11,9 @@ $card-text: #170a19;
     border: 0;
     color: $card-text;
     background-color: $card-color;
-    opacity: .8;
+    opacity: 0.8;
+  }
+  .btn-toolbar {
+    grid-column: 1/-1;
   }
 }
