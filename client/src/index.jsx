@@ -14,7 +14,7 @@ class MyFlixApplication extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <MainView />;
+        <MainView />
       </Provider>
     );
   }

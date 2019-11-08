@@ -115,13 +115,14 @@ export class MainView extends React.Component {
             exact
             path="/"
             render={() =>
-              movies.map(m => (
-                <MovieCard
-                  key={m._id}
-                  movie={m}
-                  onMovieClick={() => this.onMovieClick(m)}
-                />
-              ))
+              // movies.map(m => (
+              //   <MovieCard
+              //     key={m._id}
+              //     movie={m}
+              //     onMovieClick={() => this.onMovieClick(m)}
+              //   />
+              // ))
+              <MoviesList movies={movies} onMovieClick={(m) => this.onMovieClick(m)}/>
             }
           />
           <Route

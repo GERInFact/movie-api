@@ -1,17 +1,13 @@
-.submit {
+.movies-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+.movies-list .form-control {
+  grid-column: 1/-1;
   border: 0;
   color: #170a19;
   background-color: #99d8d0;
-  text-shadow: 0 1px 0 #fff;
-  opacity: 0.5;
-  font-weight: 700;
-  margin-top: 5px;
-}
-
-.submit:hover, .submit:focus {
-  color: #170a19;
-  background-color: #99d8d0;
-  box-shadow: 0 0 5px 3px #70416d;
 }
 .movie-card {
   display: flex;
@@ -39,6 +35,21 @@
   box-shadow: 0 0 10px 3px #70416d;
   transform: translate(0, -5px);
   opacity: 0.8;
+}
+.submit {
+  border: 0;
+  color: #170a19;
+  background-color: #99d8d0;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.submit:hover, .submit:focus {
+  color: #170a19;
+  background-color: #99d8d0;
+  box-shadow: 0 0 5px 3px #70416d;
 }
 .movie-view {
   grid-column: 1/-1;
@@ -130,13 +141,7 @@
   cursor: pointer;
   box-shadow: 0 0 5px 3px #70416d;
 }
-.main-view {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 20px;
-}
 .main-view .title {
-  grid-column: 1/-1;
   text-align: center;
   font-size: 45px;
   opacity: 0.8;
