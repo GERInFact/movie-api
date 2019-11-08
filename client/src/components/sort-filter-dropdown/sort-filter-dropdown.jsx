@@ -27,6 +27,7 @@ function SortFilterDropdown(props) {
         <Dropdown.Item eventKey=''>None</Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item eventKey="Movie Title">Movie Title</Dropdown.Item>
+        <Dropdown.Item eventKey="Movie Director">Movie Title</Dropdown.Item>
       </DropdownButton>
   </ButtonToolbar>    
  

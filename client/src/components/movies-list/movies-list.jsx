@@ -21,6 +21,9 @@ function MoviesList(props) {
     case "Movie Title":
       filteredMovies.sort((a, b) => (a.Title > b.Title ? 1 : -1));
       break;
+    case "Movie Director":
+      filteredMovies.sort((a,b) => (a.Director.Name > b.Director.Name) ? 1: -1);
+      break;
   }
 
   if (!movies) return <div className="main-view"></div>;
