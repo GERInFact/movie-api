@@ -20,10 +20,35 @@ function MoviesList(props) {
   }
   if (!movies) return <div className="main-view"></div>;
 
-  return (<div className="movies-list">
-      <VisibilityFilterInput visibilityFilter={visibilityFilter} className="filter-bar"/>
-      {filteredMovies.map(m => <MovieCard key={m._id} movie={m} onMovieClick={() => onMovieClick(m)}/>)}
-  </div>)
+  return (
+    <div className="movies-list">
+      <VisibilityFilterInput
+        visibilityFilter={visibilityFilter}
+        className="filter-bar"
+      />
+      {filteredMovies.map(m => (
+        <MovieCard key={m._id} movie={m} onMovieClick={() => onMovieClick(m)} />
+      ))}
+    </div>
+  );
 }
 
 export default connect(mapStateToProps)(MoviesList);
+
+MoviesList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      Title: PropTypes.string,
+      ImageUrl: PropTypes.string,
+      Description: PropTypes.string,
+      Genre: PropTypes.exact({
+        _id: PropTypes.string,
+        Name: PropTypes.string,
+        Description: PropTypes.string
+      }),
+      Director: PropTypes.shape({
+        Name: PropTypes.string
+      })
+    })
+  )
+};

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { setMovies } from "../../actions/actions";
+import { setMovies, setUser } from "../../actions/actions";
 
 import MoviesList from "../movies-list/movies-list";
 
@@ -37,7 +37,7 @@ export class MainView extends React.Component {
     const accessToken = localStorage.getItem("token");
     if (!accessToken) return;
 
-    this.setState({ user: localStorage.getItem("user") });
+    this.props.setUser(JSON.parse( localStorage.getItem("user")));
     this.getMovies(accessToken);
   }
 
@@ -64,7 +64,7 @@ export class MainView extends React.Component {
   }
 
   onLoggedIn(authData) {
-    this.setState({ user: authData.user.Username });
+    this.props.setUser({ user: authData.user.Username });
 
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
@@ -217,5 +217,9 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setMovies }
+  { setMovies, setUser }
 )(MainView);
+
+MainView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired
+};
