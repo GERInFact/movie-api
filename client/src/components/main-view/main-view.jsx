@@ -29,7 +29,6 @@ export class MainView extends React.Component {
     this.state = {
       selectedMovie: null,
       loadingMessage: "",
-      user: null,
       isRegistration: false
     };
   }
@@ -48,7 +47,7 @@ export class MainView extends React.Component {
       .get("https://my-flix-gerinfact.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(res => {console.log(this.props)})
+      .then(res => {this.props.setMovies(res.data); console.log(movies);})
       .catch(err => {
         this.setState({ loadingMessage: "Connection Error: No movies found." });
         console.log(err.message);
