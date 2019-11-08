@@ -1,6 +1,7 @@
 export const SET_MOVIES = "SET_MOVIES";
 export const SET_FILTER = "SET_FILTER";
 export const SET_USER = 'SET_USER';
+export const SET_SORT_FILTER = 'SET_SORT_FILTER';
 
 
 export function setMovies(value) {
