@@ -48,7 +48,7 @@ export class MainView extends React.Component {
       .get("https://my-flix-gerinfact.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(res => {console.log(res)})
+      .then(res => {console.log(res.data)})
       .catch(err => {
         this.setState({ loadingMessage: "Connection Error: No movies found." });
         console.log(err.message);
