@@ -105,7 +105,7 @@ export class MainView extends React.Component {
 
   getMainView(movies, user, selectedMovie) {
     return movies && movies.length ? (
-      <Router>
+      <Router basename="/client">
         <Link to={`/users/${user}`}>
           <h2>{user}</h2>
         </Link>

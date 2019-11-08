@@ -8,6 +8,7 @@
   border: 0;
   color: #170a19;
   background-color: #99d8d0;
+  opacity: 0.8;
 }
 .movie-card {
   display: flex;

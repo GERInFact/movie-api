@@ -1,6 +1,8 @@
 // essential web server and logging modules
 // jshint esversion: 8
 
+const path = require("path");
+
 const express = require("express"),
   bodyParser = require("body-parser"),
   morgan = require("morgan"),
@@ -35,12 +37,16 @@ const auth = require("./auth")(app);
 
 app.use(morgan("common"));
 app.use(express.static("public"));
+app.use('/client', express.static(path.join(__dirname, 'dist')));
 app.use((err, req, res, next) => {
   console.log(err.stack);
   res.status(500).send("Something went wrong");
   next();
 });
 
+app.get("/client/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 // send welcome text on page visit
 app.get("/", (req, res) => {
   res.send("Welcome to myFlix! Your customized movie platform.");
