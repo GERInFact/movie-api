@@ -38,7 +38,7 @@ export class MainView extends React.Component {
     const accessToken = localStorage.getItem("token");
     if (!accessToken) return;
 
-    this.props.setUser(JSON.parse(localStorage.getItem("user")));
+    this.props.setUser({ user: localStorage.getItem("user") });
     this.getMovies(accessToken);
   }
 
@@ -216,7 +216,7 @@ export class MainView extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { movies: state.movies };
+  return { movies: state.movies, user: state.user };
 };
 
 export default connect(
