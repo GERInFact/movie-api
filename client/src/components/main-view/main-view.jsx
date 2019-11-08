@@ -96,8 +96,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { selectedMovie, user } = this.state;
-    const { movies } = this.props;
+    const { selectedMovie } = this.state;
+    const { movies, user } = this.props;
 
     if (!user) return this.getCredentialsView();
 
