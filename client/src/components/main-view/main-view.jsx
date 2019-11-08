@@ -37,7 +37,7 @@ export class MainView extends React.Component {
     const accessToken = localStorage.getItem("token");
     if (!accessToken) return;
 
-    this.props.setUser({ user: localStorage.getItem("user") });
+    this.props.setUser(localStorage.getItem("user"));
     this.getMovies(accessToken);
   }
 
@@ -47,7 +47,7 @@ export class MainView extends React.Component {
       .get("https://my-flix-gerinfact.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(res => {this.props.setMovies({movies: res.data}); console.log(this.props.movies);})
+      .then(res => {this.props.setMovies(res.data); console.log(this.props.movies);})
       .catch(err => {
         this.setState({ loadingMessage: "Connection Error: No movies found." });
         console.log(err.message);
