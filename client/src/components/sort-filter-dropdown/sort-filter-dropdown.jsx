@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import "./sort-filter-doopdwn.scss";
+
 // get bootstrap imports
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -16,7 +18,7 @@ function SortFilterDropdown(props) {
     dropdownTitle = `Sort by ${sortFilter}`;
   }
   return (
-    <ButtonToolbar>
+    <ButtonToolbar className="sort-action">
       <DropdownButton
         variant="outline-secondary"
         title={dropdownTitle}
