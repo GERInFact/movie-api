@@ -122,7 +122,7 @@ export class MainView extends React.Component {
               //     onMovieClick={() => this.onMovieClick(m)}
               //   />
               // ))
-              <MoviesList movies={movies} onMovieClick={(m) => this.onMovieClick(m)}/>
+              <MoviesList movies={movies} onMovieClick={this.onMovieClick}/>
             }
           />
           <Route
