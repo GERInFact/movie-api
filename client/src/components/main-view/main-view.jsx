@@ -17,6 +17,7 @@ import { GenreView } from "../genre-view/genre-view";
 import { DirectorView } from "../director-view/director-view";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import "./main-view.scss";
 import { ProfileView } from "../profile-view/profile-view";
@@ -37,7 +38,7 @@ export class MainView extends React.Component {
     const accessToken = localStorage.getItem("token");
     if (!accessToken) return;
 
-    this.props.setUser(JSON.parse( localStorage.getItem("user")));
+    this.props.setUser(JSON.parse(localStorage.getItem("user")));
     this.getMovies(accessToken);
   }
 
@@ -114,7 +115,7 @@ export class MainView extends React.Component {
           <Route
             exact
             path="/"
-            render={() =>
+            render={() => (
               // movies.map(m => (
               //   <MovieCard
               //     key={m._id}
@@ -122,8 +123,11 @@ export class MainView extends React.Component {
               //     onMovieClick={() => this.onMovieClick(m)}
               //   />
               // ))
-              <MoviesList movies={movies} onMovieClick={(m) => this.onMovieClick(m)}/>
-            }
+              <MoviesList
+                movies={movies}
+                onMovieClick={m => this.onMovieClick(m)}
+              />
+            )}
           />
           <Route
             path="/movies/:title"
@@ -221,5 +225,5 @@ export default connect(
 )(MainView);
 
 MainView.propTypes = {
-  onLoggedIn: PropTypes.func.isRequired
+  setUser: PropTypes.func.isRequired
 };

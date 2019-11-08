@@ -20,3 +20,7 @@ export default connect(
   null,
   { setFilter }
 )(VisibilityFilterInput);
+
+VisibilityFilterInput.PropTypes = {
+  setFilter: PropTypes.func.isRequired
+};
